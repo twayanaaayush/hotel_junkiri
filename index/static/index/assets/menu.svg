@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="201" height="100" viewBox="0 0 201 100">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        font-size: 20px;
+        font-family: SegoeUI-Bold, Segoe UI;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+
+      .cls-2 {
+        isolation: isolate;
+      }
+
+      .cls-3, .cls-4, .cls-6 {
+        fill: none;
+      }
+
+      .cls-3, .cls-4 {
+        stroke: #fff;
+      }
+
+      .cls-3 {
+        stroke-width: 5px;
+      }
+
+      .cls-4 {
+        stroke-width: 2px;
+      }
+
+      .cls-5 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Menu" transform="translate(-1651 -68)">
+    <text id="Menu-2" data-name="Menu" class="cls-1" transform="translate(1651 127)"><tspan x="0" y="0">MENU</tspan></text>
+    <g id="hamburger" class="cls-2" transform="translate(261.718 286.333)">
+      <line id="bottom" class="cls-3" x2="38.872" transform="translate(1520.419 -156.677)"/>
+      <line id="mid" class="cls-3" x2="27.766" transform="translate(1520.419 -168.759)"/>
+      <line id="top" class="cls-3" x2="38.872" transform="translate(1520.419 -180.841)"/>
+      <g id="wrapper" class="cls-4" transform="translate(1490.282 -218.333)">
+        <rect class="cls-5" width="100" height="100"/>
+        <rect class="cls-6" x="1" y="1" width="98" height="98"/>
+      </g>
+    </g>
+  </g>
+</svg>

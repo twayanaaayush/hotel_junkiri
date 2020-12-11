@@ -1,0 +1,271 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1em;
+    /* background: #F7F9FB; */
+    color: #313131;
+}
+
+.background-container {
+    background-image: url('assets/background.PNG');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+header {
+    height: 10vh;
+    /* background-color: cornflowerblue; */
+}
+
+header > div{
+    padding: 0 !important;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.menu:hover, .logo:hover{
+    cursor: pointer;
+}
+
+.hero{
+    height: 70vh;
+}
+
+.hero > * {
+    padding: 0 !important;
+}
+
+.hero-text > span,h1 {
+    color: #ffffff;
+}
+
+.nepali-text {
+    font-weight: 700;
+    letter-spacing: 0.3rem;
+}
+
+.mid-text {
+    font-weight: 400;
+    letter-spacing: 0.3rem;
+    text-align: center;
+}
+
+.book-btn {
+    border: 1.5px solid #ffffff;
+    background: transparent;
+    color: #ffffff;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    transition: 0.3s ease-out;
+}
+
+.book-btn:hover {
+    background-color: #ffffff;
+    color: #313131;
+}
+
+.copyright-text {
+    height: 90%;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
+
+.copyright-name, .copyright-date {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.8rem;
+}
+
+nav {
+    height: 10vh;
+}
+
+.nav-link {
+    margin-right: 2.5rem;
+    transition: 0.3s ease-out;
+}
+
+.nav-link > a {
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.3rem;
+}
+
+.nav-link > a:hover {
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    border: 1px solid #ffffff;
+}
+
+.check-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 3rem auto;
+    border: 1.5px solid #313131;
+}
+
+.check-wrapper > h3{
+    font-weight: 600;
+    letter-spacing: 0.3rem;
+    text-align: center;
+}
+
+.check-btn {
+    border: none;
+    background: #313131;
+    padding: 0 0.2rem;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    transition: 0.3s ease-out;
+}
+
+.check-btn:hover {
+    border: 1px solid #313131;
+    background: transparent;
+    color: #313131;
+}
+
+.card-info-wrapper {
+    background: #CB8E73;
+    padding: 5rem 0.5rem;
+}
+
+.card-info {
+    width: 60%;
+}
+
+.card-info > h4{
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.3rem;
+} 
+
+.card-info > p{
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    line-height: 24px;
+} 
+
+.room-card {
+    width: 12rem;
+}
+
+.room-card-image {
+    width: 100%;
+    height: 14rem;
+}
+
+.room-card-image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-room-name {
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+}
+
+.card-room-price {
+    color: #EB2525;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.05rem;
+}
+
+.card-room-mute {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 0.5rem;
+    letter-spacing: 0.1rem;
+}
+
+.owl-item {
+    display: flex;
+    justify-content: center;
+}
+
+.owl-item:nth-child(even) {
+    margin-top: 3rem;
+}
+
+.services-container {
+    background: #F1F1F1;
+    margin: 4rem auto;
+    padding: 3rem 10rem 1rem;
+}
+
+.services-header {
+    font-weight: 600;
+    letter-spacing: 0.3rem;
+}
+
+.service-img-wrapper{
+    width: 24px;
+    height: 24px;
+}
+
+.service-img-wrapper > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.services-body > div >span {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.65rem;
+    letter-spacing: 0.15rem;
+}
+
+
+@media screen and (max-width: 767.98px) {
+
+    body{
+        font-size: 0.9em;
+    }
+
+    .copyright-text {
+        display: none !important;
+    }
+
+    .nav-link {
+        margin-right: -0.5rem;
+    }
+
+    .card-info {
+        width: 80%;
+        text-align: center;
+    }
+
+    .owl-item {
+        margin-top: 3rem;
+    }
+
+    .services-container {
+        padding: 4rem 3rem;
+    }
+}
