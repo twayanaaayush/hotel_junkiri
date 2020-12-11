@@ -1,13 +1,13 @@
 # Hotel website Project
 
-## Install modules in requirements.txt
+### Install modules in requirements.txt
 - pip install -r requirements.txt
 
-## Run Server
+### Run Server
 - python manage.py runserver
   
-## Create a Django Project
+### Create a Django Project
 - django-admin startproject Register_Login
 
-## Create Apps in the project
+### Create Apps in the project
 - python manage.py startapp app_name
