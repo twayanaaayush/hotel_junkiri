@@ -2,9 +2,47 @@
 {% load static %}
 
 {% block content %}
+
+{% if messages.submitted %}
+    <div class="modal hide fade" id="checkModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ messages.title }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                <div class="modal-body">
+                    {% if messages.available == "True"%}
+                        <div class="alert alert-success" role="alert">
+                            {{ messages.body }}
+                        </div>
+                        <div class="w-100 d-flex justify-content-end"><button type="button" class="check-btn my-1 py-2 px-3">Book Now</button></div>
+                    {% else %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ messages.body }}
+                        </div>
+                        <div class="w-100 d-flex justify-content-end"><button type="button" class="check-btn my-1 py-2 px-3" data-dismiss="modal">Close</button></div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(window).on('load',function(){
+            $("#checkModal").modal("show");
+        });
+    </script>
+{% endif %}
+
+
 <div class="background-container container-fluid px-5 py-4">
     <header class="row">
-        <div class="col-2 mr-auto"><img class="logo" src="{% static 'index/assets/logo_white.png' %}"></div>
+        <div class="col-2 mr-auto"><a href="{% url 'index' %}"><img class="logo" src="{% static 'index/assets/logo_white.png' %}"></a></div>
         <div class="col-2 h-100 d-flex justify-content-end"><img class="menu h-75 align-self-center" src="{% static 'index/assets/menu.svg' %}"></div>
     </header>
 
@@ -33,18 +71,10 @@
 <div class="container-fluid py-4">
     <div class="check-wrapper w-75 py-5 px-4">
         <h3 class="mb-5">check availability</h3>
-        <form>
+        <form method="POST">
+            {% csrf_token %}
             <div class="form-row justify-content-center">
-                <input class="form-control col-md-3 mr-md-4 my-1 pl-2" type="text" name="check-in" 
-                    placeholder="check in date"
-                    onfocus="(this.type='date')"
-                    onblur="(this.type='text')">
-                <input class="form-control col-md-3 mr-md-4 my-1 pl-2" type="text" name="check-in" 
-                    placeholder="check out date"
-                    onfocus="(this.type='date')"
-                    onblur="(this.type='text')">
-                <input class="form-control col-md-2 mr-md-4 my-1 pl-2" type="number" name="guest-num"
-                    placeholder="guests">
+                {{ availability_form }}
                 <button class="check-btn col-auto my-1 py-2 px-4" type="submit">check</button>
             </div>
         </form>
@@ -127,8 +157,7 @@
                 </div>
             {% endwith %}
         {% endfor %}
-        
-        
+
     </div>
 </div>
 
