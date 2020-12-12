@@ -65,6 +65,7 @@ def index_page(request):
     }
 
     available = False
+
     if request.method == 'POST':
         availability_form = AvailabilityForm(request.POST, auto_id=False)
 
@@ -80,8 +81,8 @@ def index_page(request):
 
     else:
         availability_form = AvailabilityForm(auto_id=False)
-        if 'available' in request.GET:
 
+        if 'available' in request.GET:
             available = request.GET.get('available')
             date = request.GET.get('date')
 
