@@ -45,13 +45,6 @@ class RoomType(models.Model):
         return self.room_type
 
 
-class RoomStatus(models.Model):
-    status = models.CharField(max_length=20, default="Maintenance")
-
-    def __str__(self):
-        return self.status
-
-
 class Service(models.Model):
     service_name = models.CharField(max_length=50)
 
@@ -60,12 +53,12 @@ class Service(models.Model):
 
 
 class Room(models.Model):
-    room_name = models.CharField(max_length=50, default="Junkiri Room")
+    room_name = models.CharField(max_length=50, help_text='Junkiri Room')
     type = models.ForeignKey(RoomType, on_delete=models.SET_NULL, null=True)
-    image_url = models.CharField(max_length=200, blank=True, null=True)
+    image_url = models.ImageField(default='/room_images/default.jpg', upload_to='room_images')
     capacity = models.IntegerField(null=True, blank=True)
     price = models.IntegerField()
-    includes = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True, help_text='services in room, eg:-wifi, tv')
+    includes = models.ManyToManyField(Service, null=True, help_text='services in room, eg:-wifi, tv')
 
     def __str__(self):
         return self.room_name
@@ -75,9 +68,15 @@ class Room(models.Model):
 
 
 class RoomInstance(models.Model):
+
+    class RoomStatus(models.TextChoices):
+        BOOKED = 'B', "Booked"
+        UNRESERVED = 'R', "Unreserved"
+        MAINTANENCE = 'M', "Maintanence"
+
     room_number = models.UUIDField(primary_key=True, default=uuid.uuid4)
     room = models.ForeignKey(Room, on_delete=models.SET_DEFAULT, default="Junkiri Room")
-    status = models.ForeignKey(RoomStatus, on_delete=models.SET_DEFAULT, default="Maintenance")
+    status = models.CharField(max_length=1, choices=RoomStatus.choices, default=RoomStatus.MAINTANENCE)
     free_date = models.DateField()
     # user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
 
