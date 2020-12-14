@@ -47,6 +47,7 @@ class RoomType(models.Model):
 
 class Service(models.Model):
     service_name = models.CharField(max_length=50)
+    image_url = models.ImageField(default='/service_images/default.png', upload_to='service_images')
 
     def __str__(self):
         return self.service_name
@@ -58,7 +59,7 @@ class Room(models.Model):
     image_url = models.ImageField(default='/room_images/default.jpg', upload_to='room_images')
     capacity = models.IntegerField(null=True, blank=True)
     price = models.IntegerField()
-    includes = models.ManyToManyField(Service, null=True, help_text='services in room, eg:-wifi, tv')
+    includes = models.ManyToManyField(Service, help_text='services in room, eg:-wifi, tv')
 
     def __str__(self):
         return self.room_name
