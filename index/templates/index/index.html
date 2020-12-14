@@ -96,16 +96,14 @@
             <div class="owl-carousel">
 
                 {% for room in rooms %}
-                    {% with "index/assets/"|add:room.image_url as img_url %}
-                        <div class="room-card card border-0">
-                            <div class="room-card-image"><img src="{% static img_url %}" class="img-fluid"></div>
-                            <div class="card-body d-flex flex-column pl-0">
-                                <h5 class="card-room-name">{{ room.name }}</h5>
-                                <span class="card-room-price">${{ room.price }} <span class="text-muted" style="font-size: 0.7rem; font-weight: 400;">/per night</span></span>
-                                <span class="card-room-mute text-muted">starting from</span>
-                            </div>
+                    <div class="room-card card border-0">
+                        <div class="room-card-image"><img src="{{ room.image.url }}" class="img-fluid"></div>
+                        <div class="card-body d-flex flex-column pl-0">
+                            <h5 class="card-room-name">{{ room.room_name }}</h5>
+                            <span class="card-room-price">${{ room.price }} <span class="text-muted" style="font-size: 0.7rem; font-weight: 400;">/per night</span></span>
+                            <span class="card-room-mute text-muted">starting from</span>
                         </div>
-                    {% endwith %}
+                    </div>
                 {% endfor %}
 
             </div>
@@ -149,12 +147,10 @@
                 <div class="w-100"></div>
             {% endif %}
     
-            {% with "index/assets/"|add:service.image_url as img_url %}
-                <div class="col-sm-3 mb-5 d-flex justify-content-around align-items-center">
-                    <div class="service-img-wrapper"><img src="{% static img_url %}"></div>
-                    <span class="w-50">{{ service.name }}</span>
-                </div>
-            {% endwith %}
+            <div class="col-sm-3 mb-5 d-flex justify-content-around align-items-center">
+                <div class="service-img-wrapper"><img src="{{ service.image.url }}"></div>
+                <span class="w-50">{{ service.service_name }}</span>
+            </div>
         {% endfor %}
 
     </div>
