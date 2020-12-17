@@ -1,42 +1,6 @@
 from django.db import models
 from django.urls import reverse
-import uuid
 
-########### table schema ############
-# room = {
-#     'name': 'str',
-#     'type': 'room_type [1]',
-#     'capacity': 'int',
-#     'price': 'int',
-#     'includes': 'service[1..*]' 
-# }
-
-# service = {
-#     'name':'str'
-# }
-
-# room_type = {
-#     'name': 'str',
-# }
-
-# room_status = {
-#    'status': 'str',
-# }
-
-# room_instance = {
-#     'unique_room_num': 'int<pk>',
-#     'room': 'room [1]',
-#     'status': 'room_status [1]',
-#     'free_date': 'dateTime',
-#     'user': 'user [1]'
-# }
-
-# user = {
-#     'name': 'str',
-#     'email': 'email',
-#     'address': 'str',
-#     'contact': 'int'
-# }
 
 class RoomType(models.Model):
     room_type = models.CharField(max_length=20)
@@ -71,18 +35,18 @@ class Room(models.Model):
 class RoomInstance(models.Model):
 
     class RoomStatus(models.TextChoices):
-        BOOKED = 'B', "Booked"
-        UNRESERVED = 'R', "Unreserved"
+        OCCUPIED = 'O', "Occupied"
+        UNOCCUPIED = 'U', "Unoccupied"
         MAINTANENCE = 'M', "Maintanence"
 
-    room_number = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    room_number = models.IntegerField()
     room = models.ForeignKey(Room, on_delete=models.SET_DEFAULT, default="Junkiri Room")
     status = models.CharField(max_length=1, choices=RoomStatus.choices, default=RoomStatus.MAINTANENCE)
-    free_date = models.DateField()
-    # user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
+    check_in_date = models.DateField(null=True, blank=True)
+    check_out_date = models.DateField(null=True, blank=True)
 
     class Meta:
-        ordering = ['free_date']
+        ordering = ['check_out_date']
 
     def __str__(self):
-        return f'{self.id}({self.room.room_name})'
+        return f'{self.room_number}({self.room.room_name})'

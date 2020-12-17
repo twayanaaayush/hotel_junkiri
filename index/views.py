@@ -1,12 +1,11 @@
 from django.shortcuts import render, HttpResponseRedirect
 # from django.urls import reverse
 from .forms import AvailabilityForm
-from .models import Room, Service
+from .models import Room, RoomInstance, Service
 
 def index_page(request):
 
     rooms = list(Room.objects.all())
-
     services = list(Service.objects.all())
 
     message = {
@@ -16,7 +15,7 @@ def index_page(request):
         'body': ''
     }
 
-    available = False
+    available = True
 
     if request.method == 'POST':
         availability_form = AvailabilityForm(request.POST, auto_id=False)
@@ -27,6 +26,8 @@ def index_page(request):
             check_in = clean_data['check_in']
             check_out = clean_data['check_out']
             num_guests = clean_data['num_guests']
+
+            # available_rooms = list(RoomInstance.objects.filter()  )
 
             # return HttpResponseRedirect(reverse('index'))
             return HttpResponseRedirect(f'?available={available}&date={check_in}')
