@@ -1,5 +1,4 @@
 from django.shortcuts import render, HttpResponseRedirect
-# from django.urls import reverse
 from .forms import AvailabilityForm
 from .models import Room, RoomInstance, Service
 
@@ -15,8 +14,6 @@ def index_page(request):
         'body': ''
     }
 
-    available = True
-
     if request.method == 'POST':
         availability_form = AvailabilityForm(request.POST, auto_id=False)
 
@@ -27,7 +24,7 @@ def index_page(request):
             check_out = clean_data['check_out']
             num_guests = clean_data['num_guests']
 
-            # available_rooms = list(RoomInstance.objects.filter()  )
+            available = checkAvailability(check_in, check_out, num_guests)
 
             # return HttpResponseRedirect(reverse('index'))
             return HttpResponseRedirect(f'?available={available}&date={check_in}')
@@ -57,3 +54,12 @@ def index_page(request):
     }
 
     return render(request, 'index/index.html', context)
+
+def checkAvailability(check_in, check_out, num_guests=1):
+    filtered_room = list(Room.objects.filter(capacity__gte = num_guests))
+    room_count = dict()
+
+    for room in filtered_room:
+        room_count[room.room_name] = RoomInstance.objects.filter(room = room).count()
+
+    return False
