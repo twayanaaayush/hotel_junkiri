@@ -15,6 +15,11 @@ body {
     color: #313131;
 }
 
+a {
+    color: #313131;
+    text-decoration: none;
+}
+
 .background-container {
     background-image: url('assets/background.PNG');
     background-position: center;

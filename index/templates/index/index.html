@@ -15,14 +15,21 @@
                   </div>
 
                 <div class="modal-body">
-                    {% if messages.available == "True"%}
-                        <div class="alert alert-success" role="alert">
-                            {{ messages.body}}
-                        </div>
-                        <div class="w-100 d-flex justify-content-end"><button type="button" class="check-btn my-1 py-2 px-3">Book Now</button></div>
+                    {% if messages.available == "True" %}
+                        <p class="mb-3">
+                            {{ messages.body | safe}}
+                        </p>
+                        {% for room in request.session.available_room %}
+                            <div class="alert alert-success my-2" role="alert">
+                                <a href="#" class="text-success" style="text-decoration:none;">
+                                    {{ room }}
+                                </a>   
+                            </div>
+                        {% endfor %}
+                        <!-- <div class="w-100 d-flex justify-content-end"><button type="button" class="check-btn my-1 py-2 px-3">Book Now</button></div> -->
                     {% else %}
                         <div class="alert alert-danger" role="alert">
-                            {{ messages.body }}
+                            {{ messages.body | safe }}
                         </div>
                     {% endif %}
                 </div>

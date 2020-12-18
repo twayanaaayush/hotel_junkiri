@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .forms import AvailabilityForm
 from .models import Room, RoomInstance, Service
+from user.models import Book
 
 def index_page(request):
 
@@ -24,11 +25,10 @@ def index_page(request):
             check_out = clean_data['check_out']
             num_guests = clean_data['num_guests']
 
-            available = checkAvailability(check_in, check_out, num_guests)
+            available =  check(request, check_in, check_out, num_guests)
 
             # return HttpResponseRedirect(reverse('index'))
             return HttpResponseRedirect(f'?available={available}&date={check_in}')
-
     else:
         availability_form = AvailabilityForm(auto_id=False)
 
@@ -37,14 +37,17 @@ def index_page(request):
             date = request.GET.get('date')
 
             message['submitted'] = True
-            message['available'] = request.GET.get('available')
+            message['available'] = available
 
             if available == "True":
                 message['title'] = "Room Available"
-                message['body'] = f"We have the following rooms available for {date}."
+                message['body'] = f"We have the following rooms available for <span class='text-danger'>{date}</span>."
             else:
                 message['title'] = "Room Unavailable"
-                message['body'] = f"We don't have any rooms available for {date}."
+                if 'error' in request.session:
+                    message['body'] = request.session['error']
+                else:
+                    message['body'] = f"We don't have any rooms available for {date}."
 
     context = {
         'rooms': rooms,
@@ -55,11 +58,27 @@ def index_page(request):
 
     return render(request, 'index/index.html', context)
 
-def checkAvailability(check_in, check_out, num_guests=1):
+def check(request, check_in, check_out, num_guests=1):
+
     filtered_room = list(Room.objects.filter(capacity__gte = num_guests))
-    room_count = dict()
+    available_room = list()
 
-    for room in filtered_room:
-        room_count[room.room_name] = RoomInstance.objects.filter(room = room).count()
+    if len(filtered_room) > 0:
+        hotel_room_count = list()
+        booked_room_count = list()
 
-    return False
+        for i in range((len(filtered_room))):
+            hotel_room_count.append(RoomInstance.objects.filter(room = filtered_room[i]).count())
+            booked_room_count.append(Book.objects.filter(room = filtered_room[i]).count())
+
+        for i in range(len(hotel_room_count)):
+            if booked_room_count[i] < hotel_room_count[i]:
+                available_room.append(filtered_room[i].room_name)
+            else:
+                pass
+    else:
+        request.session['error'] = f"No Rooms for {num_guests} guests.</br>Consider dividing the guests into different rooms."
+    
+    request.session['available_room'] = available_room
+
+    return True if len(available_room) > 0 else False
