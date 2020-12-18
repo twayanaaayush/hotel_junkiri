@@ -71,7 +71,7 @@ def check(request, check_in, check_out, num_guests=1):
         for i in range((len(filtered_room))):
             hotel_room_count.append(RoomInstance.objects.filter(room = filtered_room[i]).count())
             booked_room_count.append(Book.objects.filter(room = filtered_room[i]).count())
-            booked_room.append(list(RoomInstance.objects.filter(room = filtered_room[i])))
+            booked_room.append(list(Book.objects.filter(room = filtered_room[i])))
 
         for i in range(len(hotel_room_count)):
             if booked_room_count[i] < hotel_room_count[i]:
