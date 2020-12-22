@@ -1,13 +1,19 @@
 from django.shortcuts import render, HttpResponseRedirect
+
 from .helper import url_builder
 from .forms import AvailabilityForm
 from .models import Room, RoomInstance, Service
+
 from user.models import Book
+from user.forms import UserForm, BookForm
 
 def index_page(request):
 
     rooms = list(Room.objects.all())
     services = list(Service.objects.all())
+
+    user_form = UserForm(auto_id=False)
+    book_form = BookForm(auto_id=False)
 
     message = {
         'submitted': False,
@@ -54,6 +60,8 @@ def index_page(request):
         'rooms': rooms,
         'services': services,
         'availability_form': availability_form,
+        'user_form': user_form,
+        'book_form': book_form,
         'messages': message
     }
 

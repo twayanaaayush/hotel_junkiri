@@ -18,12 +18,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from user import views as user_views
+
 admin.site.site_header = "Junkiri Administration"
 admin.site.index_title = "Dashboard"
 admin.site.site_title = "Junkiri Admin"
 
 urlpatterns = [
     path('', include('index.urls')),
+    path('book/', user_views.book, name="book"),
     path('admin/', admin.site.urls),
 ] 
 
