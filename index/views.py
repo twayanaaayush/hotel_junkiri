@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
+from .helper import url_builder
 from .forms import AvailabilityForm
 from .models import Room, RoomInstance, Service
 from user.models import Book
@@ -27,8 +28,8 @@ def index_page(request):
 
             available =  check(request, check_in, check_out, num_guests)
 
-            # return HttpResponseRedirect(reverse('index'))
-            return HttpResponseRedirect(f'?available={available}&date={check_in}')
+            url = url_builder('index', get={'available':available, 'date':check_in})
+            return HttpResponseRedirect(url) 
     else:
         availability_form = AvailabilityForm(auto_id=False)
 

@@ -4,34 +4,37 @@
 {% block content %}
 
 {% if messages.submitted %}
+
+    {% include 'user/book-modal.html' %}
+
     <div class="modal fade" id="checkModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">{{ messages.title }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
 
                 <div class="modal-body">
+
                     {% if messages.available == "True" %}
-                        <p class="mb-3">
-                            {{ messages.body | safe}}
-                        </p>
+                        <p class="mb-3">{{ messages.body | safe}}</p>
+
                         {% for room in request.session.available_room %}
                             <div class="alert alert-success my-2" role="alert">
-                                <a href="#" class="text-success" style="text-decoration:none;">
-                                    {{ room }}
-                                </a>   
+                                <a href="#" class="text-success" style="text-decoration:none;">{{ room }}</a>
                             </div>
                         {% endfor %}
-                        <!-- <div class="w-100 d-flex justify-content-end"><button type="button" class="check-btn my-1 py-2 px-3">Book Now</button></div> -->
-                    {% else %}
-                        <div class="alert alert-danger" role="alert">
-                            {{ messages.body | safe }}
+
+                        <div class="w-100 d-flex justify-content-end">
+                            <button type="button" class="check-btn my-1 py-2 px-3" data-dismiss="modal" data-toggle="modal" data-target="#bookModal">Book Now</button>
                         </div>
+                    {% else %}
+                        <div class="alert alert-danger" role="alert">{{ messages.body | safe }}</div>
                     {% endif %}
+
                 </div>
 
             </div>
@@ -43,6 +46,7 @@
             $("#checkModal").modal("show");
         });
     </script>
+    
 {% endif %}
 
 
