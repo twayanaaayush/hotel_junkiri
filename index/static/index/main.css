@@ -270,6 +270,11 @@ nav {
         margin-right: -0.5rem;
     }
 
+    .check-btn {
+        margin-top:1rem !important;
+        width: 100%;
+    }
+
     .card-info {
         width: 80%;
         text-align: center;

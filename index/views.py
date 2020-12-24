@@ -13,7 +13,7 @@ def index_page(request):
     services = list(Service.objects.all())
 
     user_form = UserForm()
-    book_form = BookForm()
+    booking_form = BookForm()
 
     message = {
         'submitted': False,
@@ -61,7 +61,7 @@ def index_page(request):
         'services': services,
         'availability_form': availability_form,
         'user_form': user_form,
-        'book_form': book_form,
+        'booking_form': booking_form,
         'messages': message
     }
 
@@ -94,6 +94,6 @@ def check(request, check_in, check_out, num_guests=1):
     else:
         request.session['error'] = f"No Rooms for {num_guests} guests.</br>Consider dividing the guests into different rooms."
     
-    request.session['available_room'] = available_room
+    request.session['available_room'] = available_room  #only contains the name of the room
 
     return True if len(available_room) > 0 else False
