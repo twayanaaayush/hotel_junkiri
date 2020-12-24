@@ -1,6 +1,6 @@
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Div, Layout, Submit
+from crispy_forms.layout import Layout
 
 from .models import User
 from index.models import Room
@@ -22,27 +22,26 @@ class UserForm(forms.ModelForm):
             'u_contact': forms.NumberInput(attrs={'placeholder': 'Contact Number'}),
             'u_address': forms.TextInput(attrs={'placeholder': 'Address'})
         }
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.label_class="col-sm-2"
-        self.helper.field_class="col-sm-10"
+        self.helper.form_tag = False
+        self.helper.label_class="col-sm-3 small text-muted"
+        self.helper.field_class="col-sm-9"
         self.helper.form_class = "form-horizontal"
         self.helper.layout = Layout(
             'u_name',
             'u_email',
             'u_contact',
-            'u_address',
-            Div(Submit('check', 'check',css_class='check-btn rounded-0 my-1 py-2 px-4'),
-            css_class='w-100 d-flex justify-content-end')
+            'u_address'
         )
 
 
 class BookForm(forms.Form):
     check_in_date = forms.DateField (
                     required=True,
-                    label="", 
+                    label="Check-in", 
                     widget=forms.DateInput(attrs={
                         'placeholder': 'check in date',
                         'onfocus': "(this.type='date')",
@@ -51,7 +50,7 @@ class BookForm(forms.Form):
                     )
     check_out_date = forms.DateField (
                     required=True,
-                    label="", 
+                    label="Check-out", 
                     widget=forms.DateInput(attrs={
                         'placeholder': 'check out date',
                         'onfocus': "(this.type='date')",
@@ -60,7 +59,20 @@ class BookForm(forms.Form):
                     )
     room = forms.ModelChoiceField(
                     required=True,
-                    label="",
+                    label="Room",
                     queryset=Room.objects.all(),
                     widget=forms.Select()
                     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.helper.label_class="col-sm-3 text-muted"
+        self.helper.field_class="col-sm-9"
+        self.helper.form_class = "form-horizontal"
+        self.helper.layout = Layout(
+            'check_in_date',
+            'check_out_date',
+            'room'
+        )

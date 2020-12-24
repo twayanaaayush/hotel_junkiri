@@ -1,7 +1,9 @@
 from django import forms
+from datetime import date
 
 class AvailabilityForm(forms.Form):
     check_in = forms.DateField (
+                    # default=date.today,
                     required=True,
                     label="", 
                     widget=forms.DateInput(attrs={

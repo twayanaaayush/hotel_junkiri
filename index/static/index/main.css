@@ -21,11 +21,16 @@ a {
 }
 
 .background-container {
-    background-image: url('assets/background.PNG');
+    background-image: url('assets/background.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
+}
+
+/*From django_crsipy_forms*/
+.asteriskField {
+    display: none;
 }
 
 header {
