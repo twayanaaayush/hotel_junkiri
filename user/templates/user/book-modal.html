@@ -1,5 +1,7 @@
+{% load crispy_forms_tags %}
+
 <div class="modal fade" id="bookModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Book a Room</h5>
@@ -8,13 +10,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{% url 'book' %}">
+                <form method="POST" action="{% url 'book' %}" class="p-3">
+                    {% comment %}
                     {% csrf_token %}
                     <div class="form justify-content-center">
-                        {{ user_form }}
-                        {{ book_form }}
-                        <button class="check-btn col-auto my-1 py-2 px-4" type="submit">Book</button>
+                        {{ user_form | crispy}}
+                        {{ book_form | crispy}}
+                        <div class="w-100 d-flex justify-content-end">
+                            <button class="check-btn my-1 py-2 px-4" type="submit">Book</button>
+                        </div>
                     </div>
+                    {% endcomment %}
+                    {% crispy user_form %}
                 </form>
             </div>
         </div>

@@ -1,4 +1,7 @@
 from django import forms
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Div, Layout, Submit
+
 from .models import User
 from index.models import Room
 
@@ -8,29 +11,32 @@ class UserForm(forms.ModelForm):
         model = User
         exclude = ['u_room']
         labels = {
-            'u_name': '',
-            'u_email': '',
-            'u_contact': '',
-            'u_address': '',
+            'u_name': 'Name',
+            'u_email': 'Email',
+            'u_contact': 'Contact',
+            'u_address': 'Address',
         }
         widgets = {
-            'u_name': forms.TextInput(attrs={
-                        'class': 'form-control mr-md-4 my-1 pl-2',
-                        'placeholder': 'Name',
-                        }),
-            'u_email': forms.EmailInput(attrs={
-                        'class': 'form-control mr-md-4 my-1 pl-2',
-                        'placeholder': 'Email',
-                        }),
-            'u_contact': forms.NumberInput(attrs={
-                        'class': 'form-control mr-md-4 my-1 pl-2',
-                        'placeholder': 'Contact Number',
-                        }),
-            'u_address': forms.TextInput(attrs={
-                        'class': 'form-control mr-md-4 my-1 pl-2',
-                        'placeholder': 'Address',
-                        }),
+            'u_name': forms.TextInput(attrs={'placeholder': 'Name'}),
+            'u_email': forms.EmailInput(attrs={'placeholder': 'Email'}),
+            'u_contact': forms.NumberInput(attrs={'placeholder': 'Contact Number'}),
+            'u_address': forms.TextInput(attrs={'placeholder': 'Address'})
         }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.label_class="col-sm-2"
+        self.helper.field_class="col-sm-10"
+        self.helper.form_class = "form-horizontal"
+        self.helper.layout = Layout(
+            'u_name',
+            'u_email',
+            'u_contact',
+            'u_address',
+            Div(Submit('check', 'check',css_class='check-btn rounded-0 my-1 py-2 px-4'),
+            css_class='w-100 d-flex justify-content-end')
+        )
 
 
 class BookForm(forms.Form):
@@ -38,7 +44,6 @@ class BookForm(forms.Form):
                     required=True,
                     label="", 
                     widget=forms.DateInput(attrs={
-                        'class': 'form-control mr-md-4 my-1 pl-2',
                         'placeholder': 'check in date',
                         'onfocus': "(this.type='date')",
                         'onblur': "(this.type='text')"
@@ -48,7 +53,6 @@ class BookForm(forms.Form):
                     required=True,
                     label="", 
                     widget=forms.DateInput(attrs={
-                        'class': 'form-control mr-md-4 my-1 pl-2',
                         'placeholder': 'check out date',
                         'onfocus': "(this.type='date')",
                         'onblur': "(this.type='text')"
@@ -58,7 +62,5 @@ class BookForm(forms.Form):
                     required=True,
                     label="",
                     queryset=Room.objects.all(),
-                    widget=forms.Select(attrs={
-                        'class': 'form-control mr-md-4 my-1 pl-2',
-                        })
+                    widget=forms.Select()
                     )

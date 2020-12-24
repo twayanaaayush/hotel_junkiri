@@ -12,8 +12,8 @@ def index_page(request):
     rooms = list(Room.objects.all())
     services = list(Service.objects.all())
 
-    user_form = UserForm(auto_id=False)
-    book_form = BookForm(auto_id=False)
+    user_form = UserForm()
+    book_form = BookForm()
 
     message = {
         'submitted': False,

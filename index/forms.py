@@ -1,7 +1,6 @@
 from django import forms
 
 class AvailabilityForm(forms.Form):
-    error_css_class = 'error'
     check_in = forms.DateField (
                     required=True,
                     label="", 
