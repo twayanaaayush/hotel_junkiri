@@ -1,5 +1,6 @@
 from django.db import models
-from index.models import RoomInstance, Room
+
+from index.models import RoomInstance
 
 class User(models.Model):
     u_name = models.CharField(max_length=50, verbose_name="Name")
@@ -10,13 +11,3 @@ class User(models.Model):
 
     def __str__(self):
         return self.u_name
-
-
-class Book(models.Model):
-    check_in_date = models.DateField()
-    check_out_date = models.DateField()
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'{self.user.u_name}({self.room})'

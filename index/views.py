@@ -1,11 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect
 
-from .helper import url_builder
 from .forms import AvailabilityForm
-from .models import Room, RoomInstance, Service
+from .models import Room, Service
 
-from user.models import Book
-from user.forms import UserForm, BookForm
+from utilities.utils import url_builder
+from book.forms import BookForm
+from book.utils import check
+from user.forms import UserForm
 
 def index_page(request):
 
@@ -67,33 +68,3 @@ def index_page(request):
 
     return render(request, 'index/index.html', context)
 
-def check(request, check_in, check_out, num_guests=1):
-
-    filtered_room = list(Room.objects.filter(capacity__gte = num_guests))
-    available_room = list()
-
-    if len(filtered_room) > 0:
-        hotel_room_count = list()
-        booked_room_count = list()
-        booked_room = list()
-
-        for i in range((len(filtered_room))):
-            hotel_room_count.append(RoomInstance.objects.filter(room = filtered_room[i]).count())
-            booked_room_count.append(Book.objects.filter(room = filtered_room[i]).count())
-            booked_room.append(list(Book.objects.filter(room = filtered_room[i])))
-
-        for i in range(len(hotel_room_count)):
-            if booked_room_count[i] < hotel_room_count[i]:
-                available_room.append(filtered_room[i].room_name)
-            else:
-                for room in booked_room[i]:
-                    if check_in > room.check_out_date or check_out < room.check_in_date:
-                        available_room.append(filtered_room[i].room_name)
-                    else:
-                        pass
-    else:
-        request.session['error'] = f"No Rooms for {num_guests} guests.</br>Consider dividing the guests into different rooms."
-    
-    request.session['available_room'] = available_room  #only contains the name of the room
-
-    return True if len(available_room) > 0 else False

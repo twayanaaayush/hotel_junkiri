@@ -3,9 +3,11 @@ from django.urls import reverse
 from django.core.exceptions import PermissionDenied
 # from django.http import HttpResponseForbidden
 
-from .forms import UserForm, BookForm
-from .models import User, Book
+from .forms import BookForm
+from .models import Book
 
+from user.forms import UserForm
+from user.models import User
 
 def book(request):
 	if request.POST:
@@ -21,10 +23,8 @@ def book(request):
 			if not user.count() > 0:
 				user_form.save()
 
-			booking = Book.objects.create(user=user[0],**booking_form_clean) #create only takes positional args..so unpacking the dict
+			Book.objects.create(user=user[0],**booking_form_clean) #create only takes positional args..so unpacking the dict
 			# booking.save()	 #create() calls save implicitely
-			
-			send_email()
 
 		else:
 			pass #return some kind of error message
@@ -33,6 +33,3 @@ def book(request):
 	else:
 		raise PermissionDenied()
 		# return HttpResponseForbidden()
-
-def send_email():
-	pass
