@@ -22,13 +22,13 @@ def book(request):
 			user_form_clean = user_form.cleaned_data
 			booking_form_clean = booking_form.cleaned_data
 
-			user = User.objects.filter(u_email = user_form_clean.get('u_email'))[0]	#returns a queryset...so choosing the first one 
+			user = User.objects.filter(u_email = user_form_clean.get('u_email'))	#returns a queryset...so choosing the first one 
 			room = Room.objects.filter(pk = booking_form_clean.get('room').pk)[0]	#returns a queryset...so choosing the first one 
 
 			if not user.count() > 0:
 				user_form.save()
 
-			Book.objects.create(user=user,**booking_form_clean) #create only takes positional args..so unpacking the dict
+			Book.objects.create(user=user[0],**booking_form_clean) #create only takes positional args..so unpacking the dict
 			# booking.save()	 #create() calls save implicitely
 			message = f"A {room.room_name} has been booked on the name of {user_form_clean.get('u_name')} for {booking_form_clean.get('check_in_date')}."
 			messages.success(request, message+"Please Check your Mail!")
