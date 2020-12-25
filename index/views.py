@@ -1,10 +1,9 @@
 from django.shortcuts import render, HttpResponseRedirect
 
-from .forms import AvailabilityForm
 from .models import Room, Service
 
 from utilities.utils import url_builder
-from book.forms import BookForm
+from book.forms import BookForm, AvailabilityForm
 from book.utils import check
 from user.forms import UserForm
 
