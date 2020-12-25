@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['192.168.123.10', '127.0.0.1', '192.168.123.4']
 # Application definition
 
 INSTALLED_APPS = [
+    'mail.apps.MailConfig',
     'user.apps.UserConfig',
     'book.apps.BookConfig',
     'index.apps.IndexConfig',
