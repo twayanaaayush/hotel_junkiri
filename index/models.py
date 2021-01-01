@@ -41,7 +41,7 @@ class RoomInstance(models.Model):
 
     room_number = models.IntegerField()
     room = models.ForeignKey(Room, on_delete=models.SET_DEFAULT, default="Junkiri Room")
-    status = models.CharField(max_length=1, choices=RoomStatus.choices, default=RoomStatus.MAINTANENCE)
+    status = models.CharField(max_length=1, choices=RoomStatus.choices, default=RoomStatus.UNOCCUPIED)
     check_in_date = models.DateField(null=True, blank=True)
     check_out_date = models.DateField(null=True, blank=True)
 
