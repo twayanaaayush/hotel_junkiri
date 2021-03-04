@@ -1,0 +1,24 @@
+{% load static %} 
+
+{% block gallery %}
+
+<div class="gallery-container container-fluid d-flex justify-content-center align-items-center py-4">
+  <div class="gallery gallery-1">
+    <img class="img-fluid" src="{% static 'index/assets/index_images/kitchen.jpg' %}" />
+  </div>
+  <div class="gallery gallery-2">
+    <img class="img-fluid" src="{% static 'index/assets/index_images/lobby.jpg' %}" />
+  </div>
+  <div class="gallery gallery-3">
+    <img class="img-fluid" src="{% static 'index/assets/index_images/pool.jpg' %}" />
+  </div>
+  <div class="gallery gallery-4">
+    <img class="img-fluid" src="{% static 'index/assets/index_images/bar-4.jpg' %}" />
+  </div>
+</div>
+
+<div class="caption-text">
+  <h4>junkiri's gallery</h4>
+</div>
+
+{% endblock gallery %}
