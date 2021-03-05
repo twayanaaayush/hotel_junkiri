@@ -39,8 +39,24 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-
+    <footer class="container-fluid row pt-5 pb-4 m-0">
+        <div class="col-sm-9 row m-0 py-4 d-flex align-items-center">
+            <div class="col-sm-3 d-flex justify-content-center">
+                <div class="footer-logo"><img src="{% static 'index/assets/hotel_junkiri.png' %}" /></div>
+            </div>
+            <div class="col-sm-7">
+                <p class="m-0 text-justify">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nulla explicabo eligendi sunt eum necessitatibus iusto tenetur 
+                    expedita dolores nam quos nostrum recusandae sapiente veritatis enim ipsam,.
+                </p>
+            </div>
+        </div>
+        <div class="footer-contact-info col-sm-3 py-4 d-flex flex-column">
+            <span>hotel junkiri,</span>
+            <span>Suryabinayak,Bhaktapur, Nepal</span>
+            <span>01-66xxxxx, 01-661xxxx</span>
+            <span>P.O. Box xxxx</span>
+        </div>
     </footer>
 
     <!-- Bootstrap Javascript -->

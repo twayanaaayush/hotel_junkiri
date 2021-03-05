@@ -248,7 +248,7 @@ nav {
     object-fit: cover;
 }
 
-.services-body > div >span {
+.services-body > div > span {
     text-transform: uppercase;
     font-weight: 600;
     font-size: 0.65rem;
@@ -256,8 +256,6 @@ nav {
 }
 
 .gallery {
-    width: 12rem;
-    height: 14rem;
     border: 3px solid #ffffff;
     /* box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
                 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -303,6 +301,10 @@ nav {
     z-index: 10;
 }
 
+.gallery:hover {
+    cursor: pointer;
+}
+
 .caption-text {
     position: relative;
 }
@@ -315,6 +317,32 @@ nav {
     bottom: 1.5rem;
     font-weight: 600;
     letter-spacing: 0.3rem;
+}
+
+.footer-logo {
+    width: 8rem;
+    height: auto;
+}
+
+.footer-logo > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+footer::before {
+    content: "";
+    border-top: 1.5px solid #313131;
+    width: 85%;
+    margin: 0 -0.5rem 1rem auto;
+}
+
+footer {
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.05rem;
+    line-height: 24px;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 767.98px) {
@@ -347,5 +375,14 @@ nav {
 
     .services-container {
         padding: 4rem 3rem;
+    }
+
+    .footer-logo {
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-contact-info {
+        justify-content: center;
+        align-items: center;
     }
 }
