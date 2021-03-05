@@ -232,7 +232,7 @@ nav {
     padding: 3rem 7rem 1rem;
 }
 
-.services-header {
+.sec-header {
     font-weight: 600;
     letter-spacing: 0.3rem;
 }
@@ -332,6 +332,19 @@ nav {
     letter-spacing: 0.3rem;
 }
 
+.review-container {
+    margin: 4rem auto;
+    padding: 3rem 20rem 1rem;
+}
+
+.review-bg {
+    background: #f1f1f1;
+    /* height: 15rem;
+    width: 40rem; */
+    padding: 3rem 0 6rem;
+    z-index: -10;
+}
+
 .footer-logo {
     width: 8rem;
     height: auto;
@@ -419,15 +432,23 @@ footer {
     }
 
     .caption-text > h4 {
-        /* margin-top: -3rem;
-        margin-left: 3rem; */
         position: absolute;
         left: 1.5rem;
         bottom: 0.5rem;
-        /* font-size: 1rem; */
+        font-size: 1.2rem;
         font-weight: 600;
         letter-spacing: 0.3rem;
     }
+
+    .review-container {
+        padding: 4rem 3rem;
+    }
+    
+    /* .review-bg {
+        height: 7rem;
+        width: 20rem;
+        padding: 3rem 0 6rem;
+    } */
 
     .footer-logo {
         margin-bottom: 1.5rem;
