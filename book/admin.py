@@ -11,7 +11,7 @@ class BookAdmin(admin.ModelAdmin):
         'check_out_date',
     )
 
-    readonly_fields = ('user',)
+    # readonly_fields = ('user',)
 
     list_filter = ('check_in_date', 'room',)
 

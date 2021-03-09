@@ -1,8 +1,12 @@
 from django import forms
+from django.forms.widgets import TextInput
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout
 
 from .models import User
+
+class PhoneInput(TextInput):
+    input_type = 'tel'
 
 class UserForm(forms.ModelForm):
     class Meta:
@@ -17,7 +21,7 @@ class UserForm(forms.ModelForm):
         widgets = {
             'u_name': forms.TextInput(attrs={'placeholder': 'Name'}),
             'u_email': forms.EmailInput(attrs={'placeholder': 'Email'}),
-            'u_contact': forms.NumberInput(attrs={'placeholder': 'Contact Number'}),
+            'u_contact': PhoneInput(attrs={'placeholder': 'Contact Number'}),
             'u_address': forms.TextInput(attrs={'placeholder': 'Address'})
         }
 
