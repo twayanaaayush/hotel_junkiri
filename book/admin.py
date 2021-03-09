@@ -14,3 +14,6 @@ class BookAdmin(admin.ModelAdmin):
     readonly_fields = ('user',)
 
     list_filter = ('check_in_date', 'room',)
+
+    def  book_actions(self, obj):
+        pass

@@ -8,7 +8,7 @@ class UserAdmin(admin.ModelAdmin):
         'u_email',
         'u_contact',
         'u_address',
-        'u_room',
+        # 'u_room',     #if u want this, make a func that fetches this from the room_instance model
     )
 
     readonly_fields = (

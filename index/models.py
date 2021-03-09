@@ -1,3 +1,4 @@
+from user.models import User
 from django.db import models
 from django.urls import reverse
 
@@ -42,6 +43,7 @@ class RoomInstance(models.Model):
     room_number = models.IntegerField()
     room = models.ForeignKey(Room, on_delete=models.SET_DEFAULT, default="Junkiri Room")
     status = models.CharField(max_length=1, choices=RoomStatus.choices, default=RoomStatus.UNOCCUPIED)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True) #get data from bookings and only show room_instance by filtering from room
     check_in_date = models.DateField(null=True, blank=True)
     check_out_date = models.DateField(null=True, blank=True)
 

@@ -10,6 +10,7 @@ class RoomInstanceAdmin(admin.ModelAdmin):
         'room_number',
         'room',
         'status',
+        'user',
         'check_in_date',
         'check_out_date',
     )
