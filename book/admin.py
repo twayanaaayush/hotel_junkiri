@@ -1,10 +1,7 @@
-from collections import namedtuple
-from django import urls
 from django.contrib import admin
-from django.http.response import Http404, HttpResponse
+from django.http.response import HttpResponse
 from django.urls import reverse, path
 from django.utils.html import format_html
-from django.db import models
 from .models import Book
 
 @admin.register(Book)
@@ -16,7 +13,7 @@ class BookAdmin(admin.ModelAdmin):
         'room',
         'check_in_date',
         'check_out_date',
-        'book_actions',
+        'check_in_actions',
     )
 
     # readonly_fields = ('user',)
@@ -31,13 +28,13 @@ class BookAdmin(admin.ModelAdmin):
         ]
         return custom_urls + urls
 
-    def  book_actions(self, obj):
+    def  check_in_actions(self, obj):
         return format_html(
             '<a class="button" href="{}">Check In</a>',
             reverse('admin:check-in', args=[obj.pk]),
         )
-    book_actions.short_description = ''
-    book_actions.allow_tags = True
+    check_in_actions.short_description = ''
+    check_in_actions.allow_tags = True
 
     def check_in(self, request, pk):
         return HttpResponse(f"<h1>Hello World! {pk}</h1>")
