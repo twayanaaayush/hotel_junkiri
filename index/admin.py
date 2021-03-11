@@ -1,9 +1,9 @@
+from datetime import date
+from django.contrib import admin, messages
+from django.shortcuts import HttpResponseRedirect
 from index.models import Room, RoomInstance, RoomType, Service
-from django.urls import path
 from django.urls import reverse, path
 from django.utils.html import format_html
-from django.http import HttpResponse
-from django.contrib import admin
 
 admin.site.register(RoomType)
 admin.site.register(Service)
@@ -26,7 +26,7 @@ class RoomInstanceAdmin(admin.ModelAdmin):
         urls = super().get_urls()
 
         custom_urls = [
-            path('<int:pk>/check-out/', self.check_out, name='check-out'),
+            path('check-out/<int:pk>/', self.admin_site.admin_view(self.check_out_handler), name='check-out'),
         ]
         return custom_urls + urls
 
@@ -37,8 +37,26 @@ class RoomInstanceAdmin(admin.ModelAdmin):
         )
     check_out_actions.short_description = ''
 
-    def check_out(self, request, pk):
-        return HttpResponse(f"<h1>Hello World! {pk}</h1>")
+    def check_out_handler(self, request, pk):
+        room_instance = RoomInstance.objects.filter(id__exact=pk).first()
+
+        if not room_instance.check_out_date == date.today():
+            message = f"Check Out Date Mismatch!!"
+            messages.error(request, message)
+        else:    
+            RoomInstance.objects.filter(id__exact=pk)\
+                                .update(
+                                    user=None,
+                                    check_in_date=None,
+                                    check_out_date=None,
+                                    status = 'U',
+                                )
+
+            message = f"Check Out Successful."
+            messages.success(request, message)
+
+        # return to somewhere appropriate
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):

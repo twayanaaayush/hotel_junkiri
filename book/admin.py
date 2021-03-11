@@ -1,7 +1,8 @@
+from datetime import date
 from index.models import RoomInstance, Room
 from user.models import User
 from django.contrib import admin, messages
-from django.shortcuts import redirect, render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse, path
 from django.utils.html import format_html
 from .models import Book
@@ -27,7 +28,7 @@ class BookAdmin(admin.ModelAdmin):
         urls = super().get_urls()
 
         custom_urls = [
-            path('check-in/<int:pk>/', self.admin_site.admin_view(self.check_in), name='check-in'),
+            path('check-in/<int:pk>/', self.admin_site.admin_view(self.check_in_handler), name='check-in'),
         ]
         return custom_urls + urls
 
@@ -38,7 +39,7 @@ class BookAdmin(admin.ModelAdmin):
         )
     check_in_actions.short_description = ''
 
-    def check_in(self, request, pk):
+    def check_in_handler(self, request, pk):
 
         booked_room_obj = Book.objects.filter(id__exact=pk).first()
         room = booked_room_obj.room
@@ -51,7 +52,7 @@ class BookAdmin(admin.ModelAdmin):
             'user':user,
             'check_in':check_in,
             'check_out':check_out
-            }
+        }
 
         if request.POST:
             form = CheckInForm(request.POST, auto_id=False, book_obj_data=book_obj_data)
@@ -59,21 +60,31 @@ class BookAdmin(admin.ModelAdmin):
             if form.is_valid():
                 form_clean = form.cleaned_data
 
-                RoomInstance.objects.filter(pk = form_clean['room'].id)\
-                                    .update(
-                                        user=User.objects.filter(u_name__exact=form_clean['user']).first().id,
-                                        check_in_date=form_clean['check_in'],
-                                        check_out_date=form_clean['check_out']
-                                    )
-                
-                message = f"{user} checked-in, in room."
-                messages.success(request, message)
+                if not form_clean['check_in'] == date.today():
+                    message = f"Check-In Date Mismatch!!"
+                    messages.error(request, message)
+
+                    # return to somewhere appropriate
+                    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+                else:    
+                    RoomInstance.objects.filter(pk = form_clean['room'].id)\
+                                        .update(
+                                            user=User.objects.filter(u_name__exact=form_clean['user']).first().id,
+                                            check_in_date=form_clean['check_in'],
+                                            check_out_date=form_clean['check_out'],
+                                            status = 'O',
+                                        )
+
+                    Book.objects.filter(id__exact=pk).delete()
+
+                    message = f"Check In Successful ({user})."
+                    messages.success(request, message)
 
             else:
-                message = f"Something went wrong, {user} not checked-in, in room."
+                message = f"Something went wrong, Check In Failed ({user})."
                 messages.error(request, message)
-                pass
 
+            # redirect to booking page
             return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
             # return redirect(Book)
         else:

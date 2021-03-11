@@ -1,6 +1,8 @@
 from index.models import Room, RoomInstance
 from book.models import Book
 
+# also check for bookings done through admin panel
+
 def check(request, check_in, check_out, num_guests=1):
 
     filtered_room = list(Room.objects.filter(capacity__gte = num_guests))
