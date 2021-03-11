@@ -11,7 +11,6 @@ class UserAdmin(admin.ModelAdmin):
         'u_contact',
         'u_address',
         'get_room_no',
-        # 'u_room',     #if u want this, make a func that fetches this from the room_instance model
     )
 
     # readonly_fields = (
@@ -24,6 +23,7 @@ class UserAdmin(admin.ModelAdmin):
     def get_room_no(self, obj):
         try:
             room = RoomInstance.objects.filter(user = obj)[0]   #above statement returns a queryset
+            room_no = room.room_number
         except (IndexError):
             room_no = None
         else:
@@ -31,4 +31,3 @@ class UserAdmin(admin.ModelAdmin):
         return room_no
     
     get_room_no.short_description = 'Room Number'
-    get_room_no.allow_tags = True

@@ -36,7 +36,6 @@ class RoomInstanceAdmin(admin.ModelAdmin):
             reverse('admin:check-out', args=[obj.pk]),
         )
     check_out_actions.short_description = ''
-    check_out_actions.allow_tags = True
 
     def check_out(self, request, pk):
         return HttpResponse(f"<h1>Hello World! {pk}</h1>")

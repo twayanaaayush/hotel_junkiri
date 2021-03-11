@@ -1,8 +1,11 @@
-from django.contrib import admin
-from django.http.response import HttpResponse
+from index.models import RoomInstance, Room
+from user.models import User
+from django.contrib import admin, messages
+from django.shortcuts import redirect, render, HttpResponseRedirect
 from django.urls import reverse, path
 from django.utils.html import format_html
 from .models import Book
+from .forms import CheckInForm
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
@@ -24,7 +27,7 @@ class BookAdmin(admin.ModelAdmin):
         urls = super().get_urls()
 
         custom_urls = [
-            path('<int:pk>/check-in/', self.check_in, name='check-in'),
+            path('check-in/<int:pk>/', self.admin_site.admin_view(self.check_in), name='check-in'),
         ]
         return custom_urls + urls
 
@@ -34,7 +37,50 @@ class BookAdmin(admin.ModelAdmin):
             reverse('admin:check-in', args=[obj.pk]),
         )
     check_in_actions.short_description = ''
-    check_in_actions.allow_tags = True
 
     def check_in(self, request, pk):
-        return HttpResponse(f"<h1>Hello World! {pk}</h1>")
+
+        booked_room_obj = Book.objects.filter(id__exact=pk).first()
+        room = booked_room_obj.room
+        user = booked_room_obj.user
+        check_in = booked_room_obj.check_in_date
+        check_out = booked_room_obj.check_out_date
+
+        book_obj_data = {
+            'room_id':room.id,
+            'user':user,
+            'check_in':check_in,
+            'check_out':check_out
+            }
+
+        if request.POST:
+            form = CheckInForm(request.POST, auto_id=False, book_obj_data=book_obj_data)
+
+            if form.is_valid():
+                form_clean = form.cleaned_data
+
+                RoomInstance.objects.filter(pk = form_clean['room'].id)\
+                                    .update(
+                                        user=User.objects.filter(u_name__exact=form_clean['user']).first().id,
+                                        check_in_date=form_clean['check_in'],
+                                        check_out_date=form_clean['check_out']
+                                    )
+                
+                message = f"{user} checked-in, in room."
+                messages.success(request, message)
+
+            else:
+                message = f"Something went wrong, {user} not checked-in, in room."
+                messages.error(request, message)
+                pass
+
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+            # return redirect(Book)
+        else:
+            form = CheckInForm(book_obj_data=book_obj_data)
+
+        context = self.admin_site.each_context(request)
+        context['opts'] = self.model._meta
+        context['form'] = form
+
+        return render(request, "admin/check_in_form.html", context)

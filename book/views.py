@@ -1,4 +1,3 @@
-from django.core.mail import message
 from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied

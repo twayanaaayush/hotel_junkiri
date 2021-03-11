@@ -11,7 +11,7 @@ class PhoneInput(TextInput):
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        exclude = ['u_room']
+        exclude = []
         labels = {
             'u_name': 'Name',
             'u_email': 'Email',
