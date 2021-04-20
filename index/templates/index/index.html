@@ -53,8 +53,29 @@
 <div class="background-container container-fluid px-5 py-4">
     <header class="row">
         <div class="col-2 mr-auto"><a href="{% url 'index' %}"><img class="logo" src="{% static 'index/assets/logo_white.png' %}"></a></div>
-        <div class="col-2 h-100 d-flex justify-content-end"><img class="menu h-75 align-self-center" src="{% static 'index/assets/menu.svg' %}"></div>
+        <div class="col-2 h-100 d-flex justify-content-end"><img id="menu" class="menu h-75 align-self-center" src="{% static 'index/assets/menu.svg' %}"></div>
     </header>
+
+    <div class="full-display-nav">
+        <span class="cross-mark">X</span>
+        <a href="">Home</a>
+        <a href="">Contact us</a>
+        <a href="">Who are we?</a>
+    </div>
+
+    <script>
+        const menu = document.getElementById("menu");
+        const fullDisplayNav = document.querySelector(".full-display-nav");
+        const cross = document.querySelector(".cross-mark");
+
+        menu.addEventListener('click', (e) => {
+            fullDisplayNav.style.width='100%';    
+        });
+
+        cross.addEventListener('click', (e) => {
+            fullDisplayNav.style.width='0%';    
+        });
+    </script>
 
     <div class="row hero my-3 justify-content-end align-items-center">
         <div class="col-md-5 hero-text d-flex flex-nowrap flex-column align-items-center">
