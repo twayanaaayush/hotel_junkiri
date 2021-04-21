@@ -67,3 +67,8 @@ def index_page(request):
 
     return render(request, 'index/index.html', context)
 
+def about_page(request):
+    return render(request, 'index/about.html')
+
+def contact_page(request):
+    return render(request, 'index/contact.html')

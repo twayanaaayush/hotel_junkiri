@@ -20,6 +20,13 @@ a {
     text-decoration: none;
 }
 
+p{
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 24px;
+    letter-spacing: 0.05rem;
+}
+
 .background-container {
     background-image: url('assets/background.png');
     background-position: center;
@@ -60,42 +67,101 @@ header > div{
     display: flex;
     flex-direction: column; 
     justify-content:center;
-    align-items: center;
+    align-items: flex-start;
     position: absolute;
-    transition: 0.4s;
+    transition: 0.2s;
     overflow-x: hidden;
 
-    background-color: #CB8E73;
+    background-color: #212121;
 }
 
 .full-display-nav > a {
+    margin-left: 3rem !important;
     color: #ffffff;
-    margin: 1.5rem 0;
-    font-size: 2.5rem;
+    margin: 1.2rem 0;
+    padding: 0.5rem 1rem;
+    font-size: 2rem;
     font-weight: 600;
     letter-spacing: 0.3rem;
     text-decoration: none;
-    transition: 0.2s;
+    transition: 0.1s;
 }
 
 .full-display-nav > a:hover{
     letter-spacing: 0.5rem;
-    color: #313131;
+    /* border: 1px solid #ffffff; */
 }
 
 .cross-mark {
     position: absolute;
-    right: 4%;
-    top: 4%;
+    right: 3%;
+    top: 5%;
+    padding: 0.3rem 1.2rem;
     color: #ffffff;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 600;
 }
 
 .cross-mark:hover {
     cursor: pointer;
-    color: #313131;
+    border: 1px solid #ffffff;
     transition: 0.2s ease-in-out;
+}
+
+.about-video {
+    position: relative;
+    filter: grayscale(30%);
+    clip-path: polygon(0 0, 100% 0, 100% 65%, 50% 90%, 0 65%);
+}
+
+.about-video > .play-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 35%;
+    left: 40%;
+    z-index: 1;
+    opacity: 0.9;
+}
+
+#pause {
+    margin-top: -4.5rem !important;
+    visibility: hidden;
+}
+
+.play-wrapper > #play, .play-wrapper > #pause {
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+}
+
+.play-wrapper > #play:hover, .play-wrapper > #pause:hover {
+    cursor: pointer;
+}
+
+.play-wrapper > h1 {
+    color: #f7f9fb;
+    font-size: 2.5rem;
+    letter-spacing: 0.3rem;
+}
+
+.play-wrapper > h1:hover {
+    cursor: default;
+}
+
+.about-header {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    z-index: 1;
+}
+
+.about-header > div {
+    position: absolute;
+}
+
+.about-header > video {
+    z-index: -1;
 }
 
 .hero{
@@ -112,12 +178,12 @@ header > div{
 
 .nepali-text {
     font-weight: 700;
-    letter-spacing: 0.3rem;
+    /* letter-spacing: 0.2rem; */
 }
 
 .mid-text {
     font-weight: 400;
-    letter-spacing: 0.3rem;
+    letter-spacing: 0.2rem;
     text-align: center;
 }
 
@@ -162,9 +228,9 @@ nav {
 
 .nav-link > a {
     color: #ffffff;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.3rem;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
 }
 
 .nav-link > a:hover {
@@ -220,14 +286,7 @@ nav {
     color: #ffffff;
     font-weight: 600;
     letter-spacing: 0.3rem;
-} 
-
-.card-info > p{
-    font-weight: 400;
-    font-size: 0.9rem;
-    letter-spacing: 0.05rem;
-    line-height: 24px;
-} 
+}
 
 .room-card {
     width: 12rem;

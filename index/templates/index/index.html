@@ -56,26 +56,7 @@
         <div class="col-2 h-100 d-flex justify-content-end"><img id="menu" class="menu h-75 align-self-center" src="{% static 'index/assets/menu.svg' %}"></div>
     </header>
 
-    <div class="full-display-nav">
-        <span class="cross-mark">X</span>
-        <a href="">Home</a>
-        <a href="">Contact us</a>
-        <a href="">Who are we?</a>
-    </div>
-
-    <script>
-        const menu = document.getElementById("menu");
-        const fullDisplayNav = document.querySelector(".full-display-nav");
-        const cross = document.querySelector(".cross-mark");
-
-        menu.addEventListener('click', (e) => {
-            fullDisplayNav.style.width='100%';    
-        });
-
-        cross.addEventListener('click', (e) => {
-            fullDisplayNav.style.width='0%';    
-        });
-    </script>
+    {% include 'index/sidenav.html' %}
 
     <div class="row hero my-3 justify-content-end align-items-center">
         <div class="col-md-5 hero-text d-flex flex-nowrap flex-column align-items-center">
@@ -120,7 +101,7 @@
                 <h4 class="mb-5">ROOM & SUITE</h4>
                 <p class="mb-0">
                     Don't worry about having a hard time in choosing a perfect room, we provide you with a variety of 
-                    rooms and deluxe suites as per your needs.
+                    rooms and deluxe suites as per your needs. 
                 </p>
             </div>
         </div>
