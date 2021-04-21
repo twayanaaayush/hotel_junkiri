@@ -3,3 +3,6 @@
 
 #venv files
 django_env/*
+
+#staticfiles
+staticfiles/*
