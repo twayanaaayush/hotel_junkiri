@@ -66,10 +66,130 @@
     });
 </script>
 
-<div class="container-fluid py-4">
-    <h3 class="text-center mb-5">story</h3>
-    <div class="services-body row justify-content-around align-items-center mt-2">
+<div class="about-story container-fluid py-4">
+    <h3 class="text-center mb-5">our story</h3>
+    <div class="row justify-content-center align-items-center my-5">
+        <div class="col-sm-4 order-2 order-sm-1">
+            <p class="pb-sm-4 pt-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio cupiditate ipsam iusto officiis at adipisci error! 
+                Dolorum iste optio cupiditate numquam ea expedita vitae, laboriosam sequi id, accusamus ipsa laborum?
+            </p>
+        </div>
+        <div class="col-sm-3 order-1 order-sm-2 offset-sm-1 d-flex justify-content-center align-items">
+            <div class="about-image-wrapper"><img src="{% static 'index/assets/index_images/pool_2.jpg' %}" class="img-fluid"></div>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center align-items-center my-5">
+        <div class="col-sm-3 d-flex justify-content-center align-items">
+            <div class="about-image-wrapper"><img src="{% static 'index/assets/about_images/wedding_hall.jpg' %}" class="img-fluid"></div>
+        </div>
+        <div class="col-sm-4 offset-sm-1">
+            <p class="pt-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio cupiditate ipsam iusto officiis at adipisci error! 
+                Dolorum iste optio cupiditate numquam ea expedita vitae, laboriosam sequi id, accusamus ipsa laborum?
+            </p>
+        </div>
+    </div>
 
+    <div class="row justify-content-center align-items-center my-5">
+        <div class="col-sm-4 order-2 order-sm-1">
+            <p class="pt-sm-4 pt-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio cupiditate ipsam iusto officiis at adipisci error! 
+                Dolorum iste optio cupiditate numquam ea expedita vitae, laboriosam sequi id, accusamus ipsa laborum?
+            </p>
+        </div>
+        <div class="col-sm-3 order-1 order-sm-2 offset-sm-1 d-flex justify-content-center align-items">
+            <div class="about-image-wrapper"><img src="{% static 'index/assets/about_images/meeting_room.jpg' %}" class="img-fluid"></div>
+        </div>
+    </div>
+</div>
+
+<div class="about-team container-fluid px-0">
+    <div class="team-wrapper">
+        <!-- <h3 class="text-center">our team</h3> -->
+        
+        <div class="owl-carousel team-carousel-wrapper d-flex justify-content-around align-items-center">
+            <div class="team-card card border-0">
+                <div class="team-card-image"><img src="{% static 'index/assets/board_mem/p-1.jpg' %}" class="img-fluid"></div>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-room-text text-center">Ronish Bhuju</h4>
+                    <h5 class="card-room-text text-center">Board Director</h5>
+                </div>
+            </div>
+            <div class="team-card card border-0">
+                <div class="team-card-image"><img src="{% static 'index/assets/board_mem/p-2.jpg' %}" class="img-fluid"></div>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-room-text text-center">Jack Black</h4>
+                    <h5 class="card-room-text text-center">Board Member</h5>
+                </div>
+            </div>
+            <div class="team-card card border-0">
+                <div class="team-card-image"><img src="{% static 'index/assets/board_mem/p-3.jpg' %}" class="img-fluid"></div>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-room-text text-center">Mark Hiddleson</h4>
+                    <h5 class="card-room-text text-center">General Manager</h5>
+                </div>
+            </div>
+            <div class="team-card card border-0">
+                <div class="team-card-image"><img src="{% static 'index/assets/board_mem/p-4.jpg' %}" class="img-fluid"></div>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-room-text text-center">Lison karma</h4>
+                    <h5 class="card-room-text text-center">Head Chef</h5>
+                </div>
+            </div>
+            <div class="team-card card border-0">
+                <div class="team-card-image"><img src="{% static 'index/assets/board_mem/p-5.jpg' %}" class="img-fluid"></div>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-room-text text-center">Anish Sainju</h4>
+                    <h5 class="card-room-text text-center">Wedding Manager</h5>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(".owl-carousel").owlCarousel({
+                center:false,
+                margin:50,
+                items:3,
+                nav:false,
+                loop: false,
+                // autoWidth:true,
+                // slideTransition: 'linear',
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: false,
+                smartSpeed: 2500,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:2
+                    },
+                    600: {
+                        items:2
+                    },
+                    1000: {
+                        items:3
+                    }
+                }
+            });
+        </script>
+
+    </div>
+</div>
+
+<div class="about-story container-fluid py-5">
+    <h3 class="text-center my-sm-5">word from director</h3>
+    <div class="row justify-content-center align-items-center py-5">
+        <div class="col-sm-4">
+            <p class="pb-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio cupiditate ipsam iusto officiis at adipisci error! 
+                Dolorum iste optio cupiditate numquam ea expedita vitae, laboriosam sequi id, accusamus ipsa laborum?
+            </p>
+        </div>
+        <div class="col-sm-3 offset-sm-1 d-flex justify-content-center align-items">
+            <div class="about-image-wrapper"><img src="{% static 'index/assets/board_mem/p-1.jpg' %}" class="img-fluid"></div>
+        </div>
     </div>
 </div>
 {% endblock %}

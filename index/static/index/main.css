@@ -164,6 +164,73 @@ header > div{
     z-index: -1;
 }
 
+.about-story > h3, .about-team > h3{
+    font-weight: 600;
+    font-size: 2.5rem;
+    letter-spacing: 0.3rem;
+}
+
+.about-image-wrapper {
+    width: 18rem;
+    height: 14rem;
+}
+
+.about-image-wrapper > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-team {
+    background-image: url('assets//about_images/cover.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 85%);
+}
+
+.team-wrapper {
+    width: 100%;
+    height: 100%;
+    backdrop-filter: grayscale(70%) blur(2px);
+}
+
+/* .team-wrapper > h3 {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 2.5rem;
+    letter-spacing: 0.3rem;
+} */
+
+.team-carousel-wrapper {
+    padding: 7rem 1rem 5rem;
+}
+
+.team-card {
+    width: 12rem;
+    background: transparent;
+}
+
+.team-card-image {
+    width: 100%;
+    height: 12rem;
+}
+
+.team-card-image > img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-room-text {
+    color: #f7f9fb;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+}
+
 .hero{
     height: 70vh;
 }
@@ -563,5 +630,25 @@ footer {
     .footer-contact-info {
         justify-content: center;
         align-items: center;
+    }
+
+    .about-team {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .team-card {
+        width: 8rem;
+    }
+
+    .team-card-image {
+        height: 8rem;
+    }
+
+    .team-carousel-wrapper {
+        padding: 4rem 1rem;
+    }
+
+    .card-room-text {
+        font-size: 0.8rem;
     }
 }
