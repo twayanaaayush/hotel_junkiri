@@ -5,15 +5,14 @@
 
 {% block content %}
 
-{% include 'index/sidenav.html' %}
-
 <!-- <div class="container-fluid px-5 py-4"> -->
 <div class="about-video embed-responsive embed-responsive-16by9">
+    
     <header class="about-header w-100 d-flex align-items-center justify-content-between">
         <a href="{% url 'index' %}" class="ml-4 mt-5"><img class="logo" src="{% static 'index/assets/logo_white.png' %}"></a>
         <img id="menu" class="menu h-75 mr-4 mt-3" src="{% static 'index/assets/menu.svg' %}">
-    </header>
-    
+    </header>    
+
     <div class="play-wrapper">
         <h1>who are we?</h1>
 

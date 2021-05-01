@@ -518,6 +518,16 @@ nav {
     z-index: -10;
 }
 
+.contact-bg {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('assets/background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
 .footer-logo {
     width: 8rem;
     height: auto;

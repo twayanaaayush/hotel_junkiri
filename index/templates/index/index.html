@@ -36,7 +36,6 @@
                     {% endif %}
 
                 </div>
-
             </div>
         </div>
     </div>
@@ -51,12 +50,7 @@
 
 
 <div class="background-container container-fluid px-5 py-4">
-    <header class="row">
-        <div class="col-2 mr-auto"><a href="{% url 'index' %}"><img class="logo" src="{% static 'index/assets/logo_white.png' %}"></a></div>
-        <div class="col-2 h-100 d-flex justify-content-end"><img id="menu" class="menu h-75 align-self-center" src="{% static 'index/assets/menu.svg' %}"></div>
-    </header>
-
-    {% include 'index/sidenav.html' %}
+    {% include 'index/header.html' %}
 
     <div class="row hero my-3 justify-content-end align-items-center">
         <div class="col-md-5 hero-text d-flex flex-nowrap flex-column align-items-center">

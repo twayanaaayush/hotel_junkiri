@@ -1,0 +1,12 @@
+{% load static %}
+
+{% block header %}
+
+<!-- set padding to wrapper:: px-5 py-4 -->
+
+<header class="row">
+    <div class="col-2 mr-auto"><a href="{% url 'index' %}"><img class="logo" src="{% static 'index/assets/logo_white.png' %}"></a></div>
+    <div class="col-2 h-100 d-flex justify-content-end"><img id="menu" class="menu h-75 align-self-center" src="{% static 'index/assets/menu.svg' %}"></div>
+</header>
+
+{% endblock header %}

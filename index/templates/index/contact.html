@@ -1,10 +1,61 @@
 {% extends "index/base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% include 'index/nav_header.html' %}
 
 {% block content %}
 
-    contact page
+<div class="contact-bg container-fluid px-5 py-4">
+
+    {% comment %}
+        {% include 'index/header.html' %}
+        {% include 'index/sidenav.html' %}
+    {% endcomment %}
+    
+    <div class="row vh-100 justify-content-center align-items-center py-5">
+        <div class="col-sm-4">
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="material-icons">room</span>
+                </div>
+                <div>
+                    <h2>Address</h2>
+                    <p></p>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="material-icons">phone</span>
+                </div>
+                <div>
+                    <h2>Phone</h2>
+                    <p></p>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div>
+                    <span class="material-icons">markunread_mailbox</span>
+                </div>
+                <div>
+                    <h2>Email</h2>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 offset-sm-2 d-flex flex-column justify-content-center align-items">
+            <h2>Connect With US?</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="justify-content-center">
+                    {% crispy contact_form %}
+                    <button type="button" class="book-btn w-100 my-2">Send Message</button>
+                    <!-- <button class="btn btn-dark w-100 my-2 py-2" type="submit">Send Message</button> -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

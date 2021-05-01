@@ -15,6 +15,11 @@
 
     <!-- bootstrap css (CDN) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!-- Material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Local CSS -->
     <link rel="stylesheet" href="{% static 'index/main.css' %}">
 
     <!-- Jquery (CDN) -->
@@ -25,6 +30,26 @@
     <script src="{% static 'index/owlcarousel/owl.carousel.min.js' %}"></script>
 </head>
 <body>
+
+    <!-- set padding to wrapper:: px-5 py-4 -->
+
+    {% comment %}
+    {% if header == 'required' %}
+    <header class="row">
+        <div class="col-2 mr-auto"><a href="{% url 'index' %}"><img class="logo" src="{% static 'index/assets/logo_white.png' %}"></a></div>
+        <div class="col-2 h-100 d-flex justify-content-end"><img id="menu" class="menu h-75 align-self-center" src="{% static 'index/assets/menu.svg' %}"></div>
+    </header>
+    {% endif %}
+    {% endcomment %}
+    
+    {% if side_nav == 'required' %}
+        <div class="full-display-nav">
+            <span class="cross-mark">X</span>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'about' %}">About Us</a>
+            <a href="{% url 'contact' %}">Contact us</a>
+        </div>
+    {% endif %}
 
     <main role="main">
         {% comment %}
@@ -39,25 +64,27 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="container-fluid row pt-5 pb-4 m-0">
-        <div class="col-sm-9 row m-0 py-4 d-flex align-items-center">
-            <div class="col-sm-3 d-flex justify-content-center">
-                <div class="footer-logo"><img src="{% static 'index/assets/hotel_junkiri.png' %}" /></div>
+    {% if footer == 'required' %}
+        <footer class="container-fluid row pt-5 pb-4 m-0">
+            <div class="col-sm-9 row m-0 py-4 d-flex align-items-center">
+                <div class="col-sm-3 d-flex justify-content-center">
+                    <div class="footer-logo"><img src="{% static 'index/assets/hotel_junkiri.png' %}" /></div>
+                </div>
+                <div class="col-sm-7">
+                    <p class="m-0 text-justify">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nulla explicabo eligendi sunt eum necessitatibus iusto tenetur 
+                        expedita dolores nam quos nostrum recusandae sapiente veritatis enim ipsam,.
+                    </p>
+                </div>
             </div>
-            <div class="col-sm-7">
-                <p class="m-0 text-justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nulla explicabo eligendi sunt eum necessitatibus iusto tenetur 
-                    expedita dolores nam quos nostrum recusandae sapiente veritatis enim ipsam,.
-                </p>
+            <div class="footer-contact-info col-sm-3 py-4 d-flex flex-column">
+                <span>hotel junkiri,</span>
+                <span>Suryabinayak,Bhaktapur, Nepal</span>
+                <span>01-66xxxxx, 01-661xxxx</span>
+                <span>P.O. Box xxxx</span>
             </div>
-        </div>
-        <div class="footer-contact-info col-sm-3 py-4 d-flex flex-column">
-            <span>hotel junkiri,</span>
-            <span>Suryabinayak,Bhaktapur, Nepal</span>
-            <span>01-66xxxxx, 01-661xxxx</span>
-            <span>P.O. Box xxxx</span>
-        </div>
-    </footer>
+        </footer>
+    {% endif %}
 
     <!-- Bootstrap Javascript -->
     <script src="{% static 'index/app.js' %}"></script>

@@ -6,6 +6,7 @@ from utilities.utils import url_builder
 from book.forms import BookForm, AvailabilityForm
 from book.utils import check
 from user.forms import UserForm
+from .forms import ContactForm
 
 def index_page(request):
 
@@ -62,13 +63,32 @@ def index_page(request):
         'availability_form': availability_form,
         'user_form': user_form,
         'booking_form': booking_form,
-        'messages': message
+        'messages': message,
+        'footer': 'required',
+        'side_nav': 'required'
     }
 
     return render(request, 'index/index.html', context)
 
 def about_page(request):
-    return render(request, 'index/about.html')
+    context = {
+        'footer': 'required',
+        'side_nav': 'required'
+    }
+    return render(request, 'index/about.html', context)
 
 def contact_page(request):
-    return render(request, 'index/contact.html')
+
+    if request.method == 'POST':
+        contact_form = ContactForm(request.POST, auto_id=False)
+
+        if contact_form.is_valid():
+            clean_data = contact_form.cleaned_data
+
+    else:
+        contact_form = ContactForm(auto_id=False)
+
+    context = {
+        'contact_form': contact_form,
+    }
+    return render(request, 'index/contact.html', context)
