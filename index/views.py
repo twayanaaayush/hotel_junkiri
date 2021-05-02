@@ -1,12 +1,14 @@
 from django.shortcuts import render, HttpResponseRedirect
+from django.urls import reverse
 
 from .models import Room, Service
+from .forms import ContactForm
 
 from utilities.utils import url_builder
 from book.forms import BookForm, AvailabilityForm
 from book.utils import check
 from user.forms import UserForm
-from .forms import ContactForm
+from mail.utils import contact_mail
 
 def index_page(request):
 
@@ -84,7 +86,8 @@ def contact_page(request):
 
         if contact_form.is_valid():
             clean_data = contact_form.cleaned_data
-
+            contact_mail(clean_data['name'], clean_data['email'], clean_data['message'])
+            return HttpResponseRedirect(reverse('contact'))
     else:
         contact_form = ContactForm(auto_id=False)
 

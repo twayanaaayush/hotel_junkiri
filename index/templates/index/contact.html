@@ -2,56 +2,41 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-{% include 'index/nav_header.html' %}
-
 {% block content %}
 
-<div class="contact-bg container-fluid px-5 py-4">
+<div class="contact-bg container-fluid px-sm-5 pb-4">
 
-    {% comment %}
-        {% include 'index/header.html' %}
-        {% include 'index/sidenav.html' %}
-    {% endcomment %}
-    
-    <div class="row vh-100 justify-content-center align-items-center py-5">
-        <div class="col-sm-4">
-            <div class="d-flex align-items-center">
-                <div>
-                    <span class="material-icons">room</span>
-                </div>
-                <div>
+    <div class="row contact-wrapper vh-100 justify-content-center align-items-center py-5">
+        <div class="col-sm-4 contact-info-wrapper">
+            <div class="d-flex align-items-center my-5">
+                <span class="material-icons contact-icon">room</span>
+                <div class="ml-5 contact-description">
                     <h2>Address</h2>
-                    <p></p>
+                    <p>Suryabinayak, Bhaktapur</p>
                 </div>
             </div>
-            <div class="d-flex align-items-center">
-                <div>
-                    <span class="material-icons">phone</span>
-                </div>
-                <div>
+            <div class="d-flex align-items-center my-5">
+                <span class="material-icons contact-icon">phone</span>
+                <div class="ml-5 contact-description">
                     <h2>Phone</h2>
-                    <p></p>
+                    <p>+977-9860613xxx, +01-6615xxx</p>
                 </div>
             </div>
-            <div class="d-flex align-items-center">
-                <div>
-                    <span class="material-icons">markunread_mailbox</span>
-                </div>
-                <div>
+            <div class="d-flex align-items-center my-5">
+                <span class="material-icons contact-icon">markunread_mailbox</span>
+                <div class="ml-5 contact-description">
                     <h2>Email</h2>
-                    <p></p>
+                    <p>hoteljunkiri1@gmail.com</p>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-4 offset-sm-2 d-flex flex-column justify-content-center align-items">
-            <h2>Connect With US?</h2>
+        <div class="col-sm-4 offset-sm-2 contact-form-wrapper d-flex flex-column justify-content-center align-items-center">
+            <h2 class="mb-5">Connect With Us?</h2>
             <form method="POST">
-                {% csrf_token %}
                 <div class="justify-content-center">
                     {% crispy contact_form %}
-                    <button type="button" class="book-btn w-100 my-2">Send Message</button>
-                    <!-- <button class="btn btn-dark w-100 my-2 py-2" type="submit">Send Message</button> -->
+                    <button type="submit" class="book-btn rounded w-100 my-2" style="letter-spacing:0;font-size:1rem">Send Message</button>
                 </div>
             </form>
         </div>

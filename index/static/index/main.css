@@ -519,15 +519,40 @@ nav {
 }
 
 .contact-bg {
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw;
+    height: 100vh; */
     background-image: url('assets/background.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
+.contact-wrapper {
+    backdrop-filter: blur(3px);
+}
+
+.contact-icon {
+    color: #ffffff;
+    font-size: 2.5rem;
+}
+
+.contact-description {
+    color: #ffffff;
+    font-size: 0.8rem;
+}
+
+.contact-description > h2{
+    /* font-weight: 700; */
+    letter-spacing: 0.1rem;
+}
+
+.contact-form-wrapper > h2 {
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+}
+    
 .footer-logo {
     width: 8rem;
     height: auto;
@@ -660,5 +685,9 @@ footer {
 
     .card-room-text {
         font-size: 0.8rem;
+    }
+
+    .contact-info-wrapper {
+        display: none !important;
     }
 }
