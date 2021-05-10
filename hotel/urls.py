@@ -30,6 +30,7 @@ admin.site.site_title = "Junkiri Admin"
 urlpatterns = [
     path('', include('index.urls')),
     path('book/', book_views.book, name='book'),
+    path('book/room/<str:name>/', book_views.book_room_page, name='book_page'),
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
 ] 

@@ -1,5 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
+from django.contrib import messages
+import datetime
 
 from .models import Room, Service
 from .forms import ContactForm
@@ -15,8 +17,11 @@ def index_page(request):
     rooms = list(Room.objects.all())
     services = list(Service.objects.all())
 
-    user_form = UserForm()
-    booking_form = BookForm()
+    check_in_date=''
+    check_out_date=''
+
+    # user_form = UserForm()
+    # booking_form = BookForm()
 
     message = {
         'submitted': False,
@@ -31,41 +36,50 @@ def index_page(request):
         if availability_form.is_valid():
             clean_data = availability_form.cleaned_data
 
-            check_in = clean_data['check_in']
-            check_out = clean_data['check_out']
+            check_in_date = clean_data['check_in']
+            check_out_date = clean_data['check_out']
             num_guests = clean_data['num_guests']
 
-            available =  check(request, check_in, check_out, num_guests)
+            if datetime.date.today() >= check_in_date:
+                messages.error(request, 'Please select a date in the future.')
+                url = url_builder('index')
+            else:
+                available =  check(request, check_in_date, check_out_date, num_guests)
+                url = url_builder('index', get={'available':available, 'check-in-date':check_in_date, 'check-out-date':check_out_date, 'num':num_guests})
 
-            url = url_builder('index', get={'available':available, 'date':check_in})
             return HttpResponseRedirect(url) 
     else:
         availability_form = AvailabilityForm(auto_id=False)
 
         if 'available' in request.GET:
             available = request.GET.get('available')
-            date = request.GET.get('date')
+            check_in_date = request.GET.get('check-in-date')
+            check_out_date = request.GET.get('check-out-date')
+            num_guests = request.GET.get('num')
 
             message['submitted'] = True
             message['available'] = available
 
             if available == "True":
                 message['title'] = "Room Available"
-                message['body'] = f"We have the following rooms available for <span class='text-danger'>{date}</span>."
+                message['body'] = f"We have the following rooms available from <span class='text-danger'>{check_in_date}</span> to <span class='text-danger'>{check_out_date}</span>."
             else:
                 message['title'] = "Room Unavailable"
                 if 'error' in request.session:
                     message['body'] = request.session['error']
                 else:
-                    message['body'] = f"We don't have any rooms available for {date}."
+                    message['body'] = f"We don't have any rooms available from <span class='text-danger'>{check_in_date}</span> to <span class='text-danger'>{check_out_date}</span>."
 
     context = {
         'rooms': rooms,
         'services': services,
         'availability_form': availability_form,
-        'user_form': user_form,
-        'booking_form': booking_form,
-        'messages': message,
+        'check_in_date': check_in_date,
+        'check_out_date': check_out_date,
+        'num_guests': num_guests,
+        # 'user_form': user_form,
+        # 'booking_form': booking_form,
+        'message': message,
         'footer': 'required',
         'side_nav': 'required'
     }
@@ -95,3 +109,33 @@ def contact_page(request):
         'contact_form': contact_form,
     }
     return render(request, 'index/contact.html', context)
+
+def bar_page(request):
+    context = {
+        'footer': 'required',
+        'side_nav': 'required'
+    }
+    return render(request, 'index/bar.html', context)
+
+def restaurant_page(request):
+    context = {
+        'footer': 'required',
+        'side_nav': 'required'
+    }
+    return render(request, 'index/restaurant.html', context)
+
+def room_page(request, pk):
+
+    rooms = list(Room.objects.all().exclude(id=pk))
+    room = Room.objects.get(pk = pk)
+    features = room.includes.all()
+
+    context = {
+        'footer': 'required',
+        'side_nav': 'not_required',
+        'room': room,
+        'rooms':rooms,
+        'features': features
+    }
+    return render(request, 'index/room.html', context)
+    

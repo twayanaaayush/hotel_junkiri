@@ -8,3 +8,10 @@ def url_builder(*args, **kwargs):
     if get:
         url += '?' + urllib.parse.urlencode(get)
     return url
+
+def url_builder_new(arg, **kwargs):
+    get = kwargs.pop('get', {})
+    url = arg
+    if get:
+        url += '?' + urllib.parse.urlencode(get)
+    return url

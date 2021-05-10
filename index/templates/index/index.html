@@ -3,49 +3,8 @@
 
 {% block content %}
 
-{% if messages.submitted %}
-
-    {% include 'book/book-modal.html' %}
-
-    <div class="modal fade" id="checkModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{ messages.title }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-
-                <div class="modal-body">
-
-                    {% if messages.available == "True" %}
-                        <p class="mb-3">{{ messages.body | safe}}</p>
-
-                        {% for room in request.session.available_room %}
-                            <div class="alert alert-success my-2" role="alert">
-                                <a href="#" class="text-success" style="text-decoration:none;">{{ room }}</a>
-                            </div>
-                        {% endfor %}
-
-                        <div class="w-100 d-flex justify-content-end">
-                            <button type="button" class="check-btn my-1 py-2 px-3" data-dismiss="modal" data-toggle="modal" data-target="#bookModal">Book Now</button>
-                        </div>
-                    {% else %}
-                        <div class="alert alert-danger" role="alert">{{ messages.body | safe }}</div>
-                    {% endif %}
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        $(window).on('load',function(){
-            $("#checkModal").modal("show");
-        });
-    </script>
-    
+{% if message.submitted %}
+    {% include 'index/availability-modal.html' %}    
 {% endif %}
 
 
@@ -56,7 +15,7 @@
         <div class="col-md-5 hero-text d-flex flex-nowrap flex-column align-items-center">
             <h1 class="nepali-text">घर पछिको घर |</h1>
             <span class="mid-text px-3 my-4">Indoor luxury with the sensation of being at home.</span>
-            <button type="button" class="book-btn rounded-pill">Book a Room</button>
+            <a href="#_check-availability" type="button" class="book-btn rounded-pill">Book a Room</a>
         </div>
         <div class="col-md-1 copyright-text d-flex justify-content-between">
             <span class="copyright-name">hotel junkiri</span>
@@ -66,22 +25,22 @@
 
     <nav>
         <ul class="nav-list h-100 d-flex m-0 align-items-end">
-            <li class="nav-link"><a href="#">Rooms</a></li>
-            <li class="nav-link"><a href="#">Bar</a></li>
-            <li class="nav-link"><a href="#">Restaurant</a></li>
+            <li class="nav-link"><a href="#_rooms">Rooms</a></li>
+            <li class="nav-link"><a href="{% url 'bar' %}">Bar</a></li>
+            <li class="nav-link"><a href="{% url 'restaurant' %}">Restaurant</a></li>
         </ul>
     </nav>
 </div>
 
 
-<div class="container-fluid py-4">
+<div class="container-fluid py-4" id="_check-availability">
     <div class="check-wrapper w-75 py-5 px-4">
         <h3 class="mb-5">check availability</h3>
         <form method="POST">
             {% csrf_token %}
             <div class="form-row justify-content-center">
                 {{ availability_form }}
-                <button class="check-btn col-auto my-1 py-2 px-4" type="submit">check</button>
+                <button class="check-btn rounded col-auto my-1 py-2 px-4" type="submit">check</button>
             </div>
         </form>
     </div>
@@ -89,7 +48,7 @@
 
 
 <div class="container-fluid py-4">
-    <div class="row">
+    <div class="row" id="_rooms">
         <div class="card-info-wrapper col-sm-4 d-flex justify-content-center">
             <div class="card-info py-md-5 ml-md-5">
                 <h4 class="mb-5">ROOM & SUITE</h4>
@@ -104,9 +63,9 @@
 
                 {% for room in rooms %}
                     <div class="room-card card border-0">
-                        <div class="room-card-image"><img src="{{ room.image.url }}" class="img-fluid"></div>
+                        <a href="{% url 'room' room.id %}" class="room-card-image"><img src="{{ room.image.url }}" class="img-fluid"></a>
                         <div class="card-body d-flex flex-column pl-0">
-                            <h5 class="card-room-name">{{ room.room_name }}</h5>
+                            <a href="{% url 'room' room.id %}" class="card-room-name">{{ room.room_name }}</a>
                             <span class="card-room-price">${{ room.price }} <span class="text-muted" style="font-size: 0.7rem; font-weight: 400;">/per night</span></span>
                             <span class="card-room-mute text-muted">starting from</span>
                         </div>
@@ -126,9 +85,9 @@
                 autoWidth:true,
                 // slideTransition: 'linear',
                 autoplay: true,
-                autoplayTimeout: 3000,
+                autoplayTimeout: 4000,
                 // autoplaySpeed: 6000,
-                autoplayHoverPause: false,
+                autoplayHoverPause: true,
                 smartSpeed: 2500,
                 responsiveClass:true,
                 responsive:{

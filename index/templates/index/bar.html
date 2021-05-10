@@ -6,7 +6,7 @@
 {% block content %}
 
 <!-- <div class="container-fluid px-5 py-4"> -->
-<!-- <div class="about-video embed-responsive embed-responsive-16by9">
+<div class="about-video embed-responsive embed-responsive-16by9">
     
     <header class="about-header w-100 d-flex align-items-center justify-content-between">
         <a href="{% url 'index' %}" class="ml-4 mt-5"><img class="logo" src="{% static 'index/assets/logo_white.png' %}"></a>
@@ -63,43 +63,42 @@
         pauseBtn.style.visibility="hidden";
         playBtn.style.visibility="visible";
     });
-</script> -->
+</script>
 
 <div class="about-story container-fluid py-4">
     <h3 class="text-center mb-5">our story</h3>
     <div class="row justify-content-center align-items-center my-5">
-        <div class="col-md-4 order-2 order-md-1">
-            <p class="pb-md-4 pt-4 px-md-0 px-5">
-                We welcome you to indulge yourself in all the exciting adventures available here in Nepal. 
-                Twenty years from now you will be more disappointed by the things you didn’t do than by the ones you did do.
+        <div class="col-sm-4 order-2 order-sm-1">
+            <p class="pb-sm-4 pt-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio cupiditate ipsam iusto officiis at adipisci error! 
+                Dolorum iste optio cupiditate numquam ea expedita vitae, laboriosam sequi id, accusamus ipsa laborum?
             </p>
         </div>
-        <div class="col-md-3 order-1 order-md-2 offset-md-1 d-flex justify-content-center align-items">
+        <div class="col-sm-3 order-1 order-sm-2 offset-sm-1 d-flex justify-content-center align-items">
             <div class="about-image-wrapper"><img src="{% static 'index/assets/index_images/pool_2.jpg' %}" class="img-fluid"></div>
         </div>
     </div>
     
     <div class="row justify-content-center align-items-center my-5">
-        <div class="col-md-3 d-flex justify-content-center align-items">
+        <div class="col-sm-3 d-flex justify-content-center align-items">
             <div class="about-image-wrapper"><img src="{% static 'index/assets/about_images/wedding_hall.jpg' %}" class="img-fluid"></div>
         </div>
-        <div class="col-md-4 offset-md-1">
-            <p class="pt-4 px-md-0 px-5">
-                Weddings are a time to connect and share joy. It can be a laughter-filled day at the spa with your bridal party, two people sharing vows amid a tree-shaded forest, 
-                a lavish reception where the dance floor and glasses are always full, or an after-party where night somehow turns into day.
+        <div class="col-sm-4 offset-sm-1">
+            <p class="pt-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio cupiditate ipsam iusto officiis at adipisci error! 
+                Dolorum iste optio cupiditate numquam ea expedita vitae, laboriosam sequi id, accusamus ipsa laborum?
             </p>
         </div>
     </div>
 
     <div class="row justify-content-center align-items-center my-5">
-        <div class="col-md-4 order-2 order-md-1">
-            <p class="pt-md-4 pt-4 px-md-0 px-5">
-                At hotel junkiri, meetings are more than gathering around a conference table: They’re joining colleagues to plant trees in Lake Tahoe, 
-                taking the afternoon to surf in Bali or bonding with teammates in a state-of-the-art kitchen in Cleveland. 
-                Using the destination as their foundation, meeting experiences are crafted with beautiful venues, the latest technology, locally inspired catering and highly personalized service.
+        <div class="col-sm-4 order-2 order-sm-1">
+            <p class="pt-sm-4 pt-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio cupiditate ipsam iusto officiis at adipisci error! 
+                Dolorum iste optio cupiditate numquam ea expedita vitae, laboriosam sequi id, accusamus ipsa laborum?
             </p>
         </div>
-        <div class="col-md-3 order-1 order-md-2 offset-md-1 d-flex justify-content-center align-items">
+        <div class="col-sm-3 order-1 order-sm-2 offset-sm-1 d-flex justify-content-center align-items">
             <div class="about-image-wrapper"><img src="{% static 'index/assets/about_images/meeting_room.jpg' %}" class="img-fluid"></div>
         </div>
     </div>
@@ -153,11 +152,11 @@
                 margin:50,
                 items:3,
                 nav:false,
-                loop: true,
+                loop: false,
                 // autoWidth:true,
                 // slideTransition: 'linear',
                 autoplay: true,
-                autoplayTimeout: 4000,
+                autoplayTimeout: 3000,
                 autoplayHoverPause: false,
                 smartSpeed: 2500,
                 responsiveClass:true,
@@ -166,7 +165,7 @@
                         items:2
                     },
                     600: {
-                        items:3
+                        items:2
                     },
                     1000: {
                         items:3
@@ -179,15 +178,15 @@
 </div>
 
 <div class="about-story container-fluid py-5">
-    <h3 class="text-center my-md-5">word from director</h3>
+    <h3 class="text-center my-sm-5">word from director</h3>
     <div class="row justify-content-center align-items-center py-5">
-        <div class="col-md-4">
-            <p class="pb-4 px-md-0 px-5">
+        <div class="col-sm-4">
+            <p class="pb-4">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio cupiditate ipsam iusto officiis at adipisci error! 
                 Dolorum iste optio cupiditate numquam ea expedita vitae, laboriosam sequi id, accusamus ipsa laborum?
             </p>
         </div>
-        <div class="col-md-3 offset-md-1 d-flex justify-content-center align-items">
+        <div class="col-sm-3 offset-sm-1 d-flex justify-content-center align-items">
             <div class="about-image-wrapper"><img src="{% static 'index/assets/board_mem/p-1.jpg' %}" class="img-fluid"></div>
         </div>
     </div>

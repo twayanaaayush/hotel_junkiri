@@ -20,11 +20,15 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 p{
     font-weight: 400;
     font-size: 1rem;
-    line-height: 24px;
-    letter-spacing: 0.05rem;
+    /* line-height: 24px; */
+    letter-spacing: 0.02rem;
 }
 
 .background-container {
@@ -267,6 +271,7 @@ header > div{
 
 .book-btn:hover {
     background-color: #ffffff;
+    text-decoration: none;
     color: #313131;
 }
 
@@ -340,6 +345,23 @@ nav {
     color: #313131;
 }
 
+.dark-btn {
+    border: none;
+    background: #313131;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    transition: 0.3s ease-out;
+}
+
+.dark-btn:hover {
+    border: 1px solid #313131;
+    background: transparent;
+    color: #313131;
+}
+
+
 .card-info-wrapper {
     background: #CB8E73;
     padding: 5rem 0.5rem;
@@ -374,6 +396,11 @@ nav {
     font-weight: 700;
     font-size: 1rem;
     letter-spacing: 0.1rem;
+}
+
+.card-room-name:hover {
+    color: #313131;
+    text-decoration: none;
 }
 
 .card-room-price {
@@ -564,12 +591,12 @@ nav {
     object-fit: cover;
 }
 
-footer::before {
+/* footer::before {
     content: "";
     border-top: 1.5px solid #313131;
     width: 85%;
     margin: 0 -0.5rem 1rem auto;
-}
+} */
 
 footer {
     font-weight: 600;
@@ -577,6 +604,11 @@ footer {
     letter-spacing: 0.05rem;
     line-height: 24px;
     overflow: hidden;
+}
+
+.carousel-item > img {
+    height: 30rem;
+    object-fit: cover;
 }
 
 @media screen and (max-width: 767.98px) {
@@ -690,4 +722,10 @@ footer {
     .contact-info-wrapper {
         display: none !important;
     }
+
+    .carousel-item > img {
+        height: 18rem;
+        object-fit: cover;
+    }
+
 }
