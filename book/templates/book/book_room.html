@@ -142,18 +142,29 @@
         </div>
         <div class="col-sm-7 offset-sm-1 d-flex align-items-end p-sm-0">
             <div class="owl-carousel">
-
-                {% for room in rooms %}
-                    <div class="room-card card border-0">
-                        <a href="{% url 'book_page' room %}?available=True&check_in_date={{ request.GET.check_in_date }}&check_out_date={{ request.GET.check_out_date }}&num={{ request.GET.num }}" class="room-card-image"><img src="{{ room.image.url }}" class="img-fluid"></a>
-                        <div class="card-body d-flex flex-column pl-0">
-                            <a href="{% url 'book_page' room.room_name %}?available=True&check_in_date={{ request.GET.check_in_date }}&check_out_date={{ request.GET.check_out_date }}&num={{ request.GET.num }}" class="card-room-name">{{ room.room_name }}</a>
-                            <span class="card-room-price">${{ room.price }} <span class="text-muted" style="font-size: 0.7rem; font-weight: 400;">/per night</span></span>
-                            <span class="card-room-mute text-muted">starting from</span>
+                {% if request.GET.available %}
+                    {% for room in rooms %}
+                        <div class="room-card card border-0">
+                            <a href="{% url 'book_page' room %}?available=True&check_in_date={{ request.GET.check_in_date }}&check_out_date={{ request.GET.check_out_date }}&num={{ request.GET.num }}" class="room-card-image"><img src="{{ room.image.url }}" class="img-fluid"></a>
+                            <div class="card-body d-flex flex-column pl-0">
+                                <a href="{% url 'book_page' room.room_name %}?available=True&check_in_date={{ request.GET.check_in_date }}&check_out_date={{ request.GET.check_out_date }}&num={{ request.GET.num }}" class="card-room-name">{{ room.room_name }}</a>
+                                <span class="card-room-price">${{ room.price }} <span class="text-muted" style="font-size: 0.7rem; font-weight: 400;">/per night</span></span>
+                                <span class="card-room-mute text-muted">starting from</span>
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
-
+                    {% endfor %}
+                {% else %}
+                    {% for room in rooms %}
+                        <div class="room-card card border-0">
+                            <a href="{% url 'book_page' room.room_name %}" class="room-card-image"><img src="{{ room.image.url }}" class="img-fluid"></a>
+                            <div class="card-body d-flex flex-column pl-0">
+                                <a href="{% url 'book_page' room.room_name %}" class="card-room-name">{{ room.room_name }}</a>
+                                <span class="card-room-price">${{ room.price }} <span class="text-muted" style="font-size: 0.7rem; font-weight: 400;">/per night</span></span>
+                                <span class="card-room-mute text-muted">starting from</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
 

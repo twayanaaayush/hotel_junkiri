@@ -52,6 +52,7 @@ def book(request):
 def book_room_page(request, name):
 
 	rooms = []
+	available_rooms = []
 	room = Room.objects.get(room_name = name)
 	features = room.includes.all()
 
