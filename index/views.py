@@ -67,8 +67,7 @@ def index_page(request):
                 if 'error' in request.session:
                     message['body'] = request.session['error']
 
-                    request.session.modified = True
-                    request.session.pop('error')
+                    del request.session['error']
                 else:
                     message['body'] = f"We don't have any rooms available from <span class='text-danger'>{check_in_date}</span> to <span class='text-danger'>{check_out_date}</span>."
 

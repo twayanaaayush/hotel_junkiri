@@ -119,20 +119,22 @@ def book_room_page(request, name):
 
 			if available == "True":
 				if name in request.session['available_room']:
+					available_rooms = request.session['available_room']
+					available_rooms.remove(name)
+
 					message['disable'] = True
 					messages.success(request, f"{name} is available from {check_in_date} to {check_out_date}.")
 				else:
 					message['title'] = "Other Rooms Available"
 					message['body'] = f"We have the following rooms available from <span class='text-danger'>{check_in_date}</span> to <span class='text-danger'>{check_out_date}</span>."
 			else:
+				available_rooms = list(Room.objects.all().exclude(room_name=name))
+
 				message['title'] = "Room Unavailable"
 				if 'error' in request.session:
 					message['body'] = request.session['error']
 				else:
 					message['body'] = f"We don't have any rooms available from <span class='text-danger'>{check_in_date}</span> to <span class='text-danger'>{check_out_date}</span>."	
-
-			available_rooms = request.session['available_room']
-			available_rooms.remove(name)
 			
 			for room_name in available_rooms:
 				rooms.append(Room.objects.get(room_name = room_name))
