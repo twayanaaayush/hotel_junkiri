@@ -40,7 +40,7 @@ class RoomInstanceAdmin(admin.ModelAdmin):
     def check_out_handler(self, request, pk):
         room_instance = RoomInstance.objects.filter(id__exact=pk).first()
 
-        if not room_instance.check_out_date == date.today():
+        if room_instance.check_out_date > date.today():
             message = f"Check Out Date Mismatch!!"
             messages.error(request, message)
         else:    

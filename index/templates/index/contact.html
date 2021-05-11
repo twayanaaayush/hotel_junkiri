@@ -6,7 +6,15 @@
 
 <div class="contact-bg container-fluid px-sm-5 pb-4">
 
-    <div class="row contact-wrapper vh-100 justify-content-center align-items-center py-5">
+    <header class="header d-flex justify-content-center align-items-center py-sm-5">
+        <div class="logo-2-wrapper d-flex align-items-center mr-auto h-100">
+            <a href="{% url 'index' %}" class="mr-3"><img class="logo-2" src="{% static 'index/assets/junkiri_white.png' %}"></a>
+            <a href="{% url 'index' %}" class="mt-2"><img class="logo-2-typo" src="{% static 'index/assets/hotel_junkiri_typo_white_2.png' %}"></a>
+        </div>
+        <div class="h-100 d-flex align-items-center"><img id="menu" class="menu-2" src="{% static 'index/assets/menu.svg' %}"></div>
+    </header>
+
+    <div class="row contact-wrapper vh-100 justify-content-center align-items-center">
         <div class="col-sm-4 contact-info-wrapper">
             <div class="d-flex align-items-center my-5">
                 <span class="material-icons contact-icon">room</span>

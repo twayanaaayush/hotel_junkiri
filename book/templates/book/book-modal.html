@@ -14,7 +14,11 @@
             <div class="modal-body">
                 {% if messages and message.disable %}
                     {% for message_built_in in messages %}
-                        <div class="alert alert-danger mb-sm-4" role="alert">{{ message_built_in }}</div>
+                        {% if message_built_in.tags == "error" %}
+                            <div class="alert alert-danger mb-sm-4" role="alert">{{ message_built_in }}</div>
+                        {% else %}
+                            <div class="alert alert-{{ message_built_in.tags }} mb-sm-4" role="alert">{{ message_built_in }}</div>
+                        {% endif %}
                     {% endfor %}
                 {% endif %}
                 <form method="POST" action="{% url 'book' %}" class="px-4">

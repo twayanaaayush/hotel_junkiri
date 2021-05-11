@@ -45,12 +45,30 @@ p{
 }
 
 header {
-    height: 10vh;
-    /* background-color: cornflowerblue; */
+    height: 12vh;
 }
 
 header > div{
     padding: 0 !important;
+}
+
+.logo-2 {
+    width: 3rem;
+    height: auto;
+}
+
+.logo-2-typo {
+    width: 12rem;
+    height: auto;
+}
+
+.menu-2 {
+    width: 5rem;
+    height: auto;
+}
+
+.menu-2:hover{
+    cursor: pointer;
 }
 
 .logo {
@@ -69,9 +87,8 @@ header > div{
     top: 0;
     left: 0;
     display: flex;
-    flex-direction: column; 
-    justify-content:center;
-    align-items: flex-start;
+    justify-content:space-between;
+    align-items: center;
     position: absolute;
     transition: 0.2s;
     overflow-x: hidden;
@@ -79,7 +96,18 @@ header > div{
     background-color: #212121;
 }
 
-.full-display-nav > a {
+.full-display-nav > .left {
+    display: flex;
+    flex-direction: column; 
+    justify-content:center;
+    align-items: flex-start;
+}
+
+.full-display-nav > .right {
+    margin-right: 10rem;
+}
+
+.full-display-nav > .left > a {
     margin-left: 3rem !important;
     color: #ffffff;
     margin: 1.2rem 0;
@@ -91,7 +119,7 @@ header > div{
     transition: 0.1s;
 }
 
-.full-display-nav > a:hover{
+.full-display-nav > .left > a:hover{
     letter-spacing: 0.5rem;
     /* border: 1px solid #ffffff; */
 }
@@ -112,6 +140,10 @@ header > div{
     transition: 0.2s ease-in-out;
 }
 
+.about-header-2 {
+    display: none !important;
+}
+
 .about-video {
     position: relative;
     filter: grayscale(30%);
@@ -129,7 +161,7 @@ header > div{
     opacity: 0.9;
 }
 
-#pause {
+#play {
     margin-top: -4.5rem !important;
     visibility: hidden;
 }
@@ -557,6 +589,7 @@ nav {
 
 .contact-wrapper {
     backdrop-filter: blur(3px);
+    /* height: 88vh; */
 }
 
 .contact-icon {
@@ -615,6 +648,15 @@ footer {
 
     body{
         font-size: 0.9em;
+    }
+
+    .logo-2 {
+        width: 3rem;
+        height: auto;
+    }
+    
+    .logo-2-typo {
+        display: none;
     }
 
     .copyright-text {
@@ -728,4 +770,21 @@ footer {
         object-fit: cover;
     }
 
+    .about-header {
+        display: none !important;
+    }
+
+    .about-header-2 {
+        display: flex !important;
+    }
+
+    .about-video {
+        position: relative;
+        filter: grayscale(30%);
+        clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
+    }
+
+    .play-wrapper > #play, .play-wrapper > #pause, .play-wrapper > h1 {
+        display: none;
+    }
 }

@@ -5,28 +5,25 @@
 
 {% block content %}
 
+<header class="about-header-2 d-flex justify-content-center align-items-center px-5 py-3 mb-5" style="background-color: #313131;">
+    <div class="logo-2-wrapper d-flex align-items-center mr-auto h-100">
+        <a href="{% url 'index' %}" class="mr-3"><img class="logo-2" src="{% static 'index/assets/junkiri_white.png' %}"></a>
+        <a href="{% url 'index' %}" class="mt-2"><img class="logo-2-typo" src="{% static 'index/assets/hotel_junkiri_typo_white_2.png' %}"></a>
+    </div>
+    <div class="h-100 d-flex align-items-center"><img id="menu" class="menu-2" src="{% static 'index/assets/menu.svg' %}"></div>
+</header>
+
 <!-- <div class="container-fluid px-5 py-4"> -->
-<!-- <div class="about-video embed-responsive embed-responsive-16by9">
+<div class="about-video embed-responsive embed-responsive-16by9">
     
     <header class="about-header w-100 d-flex align-items-center justify-content-between">
         <a href="{% url 'index' %}" class="ml-4 mt-5"><img class="logo" src="{% static 'index/assets/logo_white.png' %}"></a>
         <img id="menu" class="menu h-75 mr-4 mt-3" src="{% static 'index/assets/menu.svg' %}">
-    </header>    
+    </header>  
+      
 
     <div class="play-wrapper">
         <h1>who are we?</h1>
-
-        <svg id="play" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="75" height="75"
-            viewBox="0 0 172 172"
-            style=" fill:#000000;">
-                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
-                    <path d="M0,172v-172h172v172z" fill="none"></path>
-                    <g fill="#f7f9fb">
-                        <path d="M86,6.88c-43.65844,0 -79.12,35.46156 -79.12,79.12c0,43.65844 35.46156,79.12 79.12,79.12c43.65844,0 79.12,-35.46156 79.12,-79.12c0,-43.65844 -35.46156,-79.12 -79.12,-79.12zM86,13.76c39.93625,0 72.24,32.30375 72.24,72.24c0,39.93625 -32.30375,72.24 -72.24,72.24c-39.93625,0 -72.24,-32.30375 -72.24,-72.24c0,-39.93625 32.30375,-72.24 72.24,-72.24zM61.92,45.58v80.84l5.16,-3.01l58.48,-34.4l5.0525,-3.01l-5.0525,-3.01l-58.48,-34.4zM68.8,57.62l48.16,28.38l-48.16,28.38z"></path>
-                    </g>
-                </g>
-        </svg>
 
         <svg id="pause" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
             width="75" height="75"
@@ -39,9 +36,21 @@
                     </g>
                 </g>
         </svg>
+
+        <svg id="play" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            width="75" height="75"
+            viewBox="0 0 172 172"
+            style=" fill:#000000;">
+                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                    <g fill="#f7f9fb">
+                        <path d="M86,6.88c-43.65844,0 -79.12,35.46156 -79.12,79.12c0,43.65844 35.46156,79.12 79.12,79.12c43.65844,0 79.12,-35.46156 79.12,-79.12c0,-43.65844 -35.46156,-79.12 -79.12,-79.12zM86,13.76c39.93625,0 72.24,32.30375 72.24,72.24c0,39.93625 -32.30375,72.24 -72.24,72.24c-39.93625,0 -72.24,-32.30375 -72.24,-72.24c0,-39.93625 32.30375,-72.24 72.24,-72.24zM61.92,45.58v80.84l5.16,-3.01l58.48,-34.4l5.0525,-3.01l-5.0525,-3.01l-58.48,-34.4zM68.8,57.62l48.16,28.38l-48.16,28.38z"></path>
+                    </g>
+                </g>
+        </svg>
     </div>
 
-    <video id="about-video" class="embed-responsive-item mt-n4" muted>
+    <video id="about-video" class="embed-responsive-item mt-n4" autoplay muted>
         <source src="{% static 'index/assets/videos/clerk.mp4' %}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -63,7 +72,7 @@
         pauseBtn.style.visibility="hidden";
         playBtn.style.visibility="visible";
     });
-</script> -->
+</script>
 
 <div class="about-story container-fluid py-4">
     <h3 class="text-center mb-5">our story</h3>

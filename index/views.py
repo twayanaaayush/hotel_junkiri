@@ -105,6 +105,7 @@ def contact_page(request):
         contact_form = ContactForm(auto_id=False)
 
     context = {
+        'side_nav': 'required',
         'contact_form': contact_form,
     }
     return render(request, 'index/contact.html', context)
@@ -131,7 +132,8 @@ def room_page(request, pk):
 
     context = {
         'footer': 'required',
-        'side_nav': 'not_required',
+        'header': 'required',
+        'side_nav': 'required',
         'room': room,
         'rooms':rooms,
         'features': features

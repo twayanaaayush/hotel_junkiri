@@ -112,8 +112,9 @@ def book_room_page(request, name):
 			availability_form = AvailabilityForm(initial=availability_data, auto_id=False)
 			booking_form = BookForm(initial=booking_data, auto_id=False)
 
+			# Disabling the fields make the form invalid....why??????? So instead made the fields in forms read-only
 			for field_name in list(booking_form.fields.keys()):
-				booking_form.fields[field_name].disabled = True
+				booking_form.fields[field_name].readonly = True
 
 			message['submitted'] = True
 			message['available'] = available
@@ -127,7 +128,7 @@ def book_room_page(request, name):
 					messages.success(request, f"{name} is available from {check_in_date} to {check_out_date}.")
 				else:
 					message['title'] = "Other Rooms Available"
-					message['body'] = f"We have the following rooms available from <span class='text-danger'>{check_in_date}</span> to <span class='text-danger'>{check_out_date}</span>."
+					message['body'] = f"Unfortunately, <span class='text-danger'>{name}</span> is not available, instead We have the following rooms available from <span class='text-danger'>{check_in_date}</span> to <span class='text-danger'>{check_out_date}</span>."
 			else:
 				available_rooms = list(Room.objects.all().exclude(room_name=name))
 
@@ -153,7 +154,8 @@ def book_room_page(request, name):
 
 	context = {
 		'footer': 'required',
-		'side_nav': 'not_required',
+		'header': 'required',
+		'side_nav': 'required',
 		'room': room,
 		'rooms': rooms,
         'message': message,

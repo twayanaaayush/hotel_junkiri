@@ -63,7 +63,13 @@
 
         <div class="col-md-3 my-4 ml-md-4">
             <h2 class="">{{ room.room_name }}</h2>
-            <h5 class=""><span class="badge badge-pill badge-success small">Available</span></h5>
+            <h5 class="">
+                {% if message.disable %}
+                    <span class="badge badge-pill badge-success small">Available</span>
+                {% else %}
+                    <span class="badge badge-pill badge-danger small">Unavailable</span>
+                {% endif %}
+            </h5>
 
             <div class="d-flex mt-4 w-100 align-items-center">
                 <h5 class="m-0">Price</h5>

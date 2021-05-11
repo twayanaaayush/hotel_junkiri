@@ -12,7 +12,8 @@ class BookForm(forms.Form):
                     widget=forms.DateInput(attrs={
                         'placeholder': 'check in date',
                         'onfocus': "(this.type='date')",
-                        'onblur': "(this.type='text')"
+                        'onblur': "(this.type='text')",
+                        'readonly': 'True'
                         })
                     )
     check_out_date = forms.DateField (
@@ -21,14 +22,17 @@ class BookForm(forms.Form):
                     widget=forms.DateInput(attrs={
                         'placeholder': 'check out date',
                         'onfocus': "(this.type='date')",
-                        'onblur': "(this.type='text')"
+                        'onblur': "(this.type='text')",
+                        'readonly': 'True'
                         })
                     )
     room = forms.ModelChoiceField(
                     required=True,
                     label="Room",
                     queryset=Room.objects.all(),
-                    widget=forms.Select()
+                    widget=forms.Select(attrs={
+                        'readonly': 'True'
+                    })
                     )
 
     def __init__(self, *args, **kwargs):

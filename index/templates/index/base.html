@@ -33,21 +33,48 @@
 
     <!-- set padding to wrapper:: px-5 py-4 -->
 
-    {% comment %}
     {% if header == 'required' %}
-    <header class="row">
-        <div class="col-2 mr-auto"><a href="{% url 'index' %}"><img class="logo" src="{% static 'index/assets/logo_white.png' %}"></a></div>
-        <div class="col-2 h-100 d-flex justify-content-end"><img id="menu" class="menu h-75 align-self-center" src="{% static 'index/assets/menu.svg' %}"></div>
+    <header class="header d-flex justify-content-center align-items-center px-5 py-3 mb-3" style="background-color: #313131;">
+        <div class="logo-2-wrapper d-flex align-items-center mr-auto h-100">
+            <a href="{% url 'index' %}" class="mr-3"><img class="logo-2" src="{% static 'index/assets/junkiri_white.png' %}"></a>
+            <a href="{% url 'index' %}" class="mt-2"><img class="logo-2-typo" src="{% static 'index/assets/hotel_junkiri_typo_white_2.png' %}"></a>
+        </div>
+        <div class="h-100 d-flex align-items-center"><img id="menu" class="menu-2" src="{% static 'index/assets/menu.svg' %}"></div>
     </header>
     {% endif %}
-    {% endcomment %}
-    
+
     {% if side_nav == 'required' %}
         <div class="full-display-nav">
-            <span class="cross-mark">X</span>
-            <a href="{% url 'index' %}">Home</a>
-            <a href="{% url 'about' %}">About Us</a>
-            <a href="{% url 'contact' %}">Contact us</a>
+            <div class="left">
+                <span class="cross-mark">X</span>
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'about' %}">About Us</a>
+                <a href="{% url 'contact' %}">Contact us</a>
+            </div>
+
+            <div class="right contact-info-wrapper">
+                <div class="d-flex align-items-center my-5">
+                    <span class="material-icons contact-icon">room</span>
+                    <div class="ml-5 contact-description">
+                        <h2>Address</h2>
+                        <p>Suryabinayak, Bhaktapur</p>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center my-5">
+                    <span class="material-icons contact-icon">phone</span>
+                    <div class="ml-5 contact-description">
+                        <h2>Phone</h2>
+                        <p>+977-9860613xxx, +01-6615xxx</p>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center my-5">
+                    <span class="material-icons contact-icon">markunread_mailbox</span>
+                    <div class="ml-5 contact-description">
+                        <h2>Email</h2>
+                        <p>hoteljunkiri1@gmail.com</p>
+                    </div>
+                </div>
+            </div>
         </div>
     {% endif %}
 
@@ -55,21 +82,25 @@
 
             {% if messages and request.GET.error != "info-error" %}
                 {% for message_built_in in messages %}
-                    <!-- <div class="alert alert-{{ message_buit_in.tags }}">
-                        {{ message_buit_in }}
-                    </div> -->
 
                     <!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;"> -->
                         <div class="toast" style="position: absolute; top: 0; right: 0;">
-                          <div class="toast-header">
-                            <strong class="mr-auto text-danger">{{ message_built_in.tags }}</strong>
-                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="toast-body text-danger">
-                            {{ message_built_in }}
-                          </div>
+                            <div class="toast-header">
+                                <strong class="mr-auto text-secondary">Notification</strong>
+                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            {% if message_built_in.tags == "error" %}
+                                <div class="toast-body text-danger">
+                                    {{ message_built_in }}
+                                </div>
+                            {% else %}
+                                <div class="toast-body text-{{ message_built_in.tags }}">
+                                    {{ message_built_in }}
+                                </div>
+                            {% endif %}
                         </div>
                     <!-- </div> -->
 
