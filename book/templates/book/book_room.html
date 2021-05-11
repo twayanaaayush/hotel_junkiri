@@ -5,9 +5,19 @@
 
 {% include 'book/book-modal.html' %}
 
+{% if message.submitted and not message.disable %}
+    {% include 'index/availability-modal.html' %}    
+{% endif %}
+
 <div class="container-fluid py-4" id="_check-availability">
     <div class="check-wrapper w-75 py-5 px-4">
-        <h3 class="mb-5">edit reservation</h3>
+        <h3 class="mb-5">
+            {% if message.available == "True" %}
+                edit reservation
+            {% else %}
+                check availability
+            {% endif %}
+        </h3>
         <form method="POST">
             {% csrf_token %}
             <div class="form-row justify-content-center">
@@ -18,7 +28,7 @@
     </div>
 </div>
 
-<div class="container-fluid px-sm-5 px-4 py-sm-4">
+<div class="container-fluid px-sm-5 px-4 pt-sm-4 pb-sm-5">
     <div class="row justify-content-center">
         <!-- <div class="col-sm-7"><img src="{% static 'index/assets/index_images/bar-4-max.jpg' %}" class="img-fluid" alt=""></div> -->
 
@@ -105,10 +115,76 @@
                 <a href="#" class="dark-btn rounded py-2 px-4">Continue</a>
             </div> -->
 
+            {% if request.GET.error == "info-error" %}
+                <script>
+                    $(window).on('load',function(){
+                        $("#bookModal").modal("show");
+                    });
+                </script>
+            {% endif %}
+
             <div class="w-100 d-flex justify-content-end mt-4">
                 <button type="button" class="dark-btn rounded py-2 px-4" data-dismiss="modal" data-toggle="modal" data-target="#bookModal">Continue</button>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="container-fluid pt-sm-5 py-5">
+    <div class="row" id="_rooms">
+        <div class="card-info-wrapper col-sm-4 d-flex justify-content-center">
+            <div class="card-info py-md-5 ml-md-5">
+                <h4 class="mb-5" style="line-height: 2rem;">AVAILABLE ROOMS & SUITE</h4>
+                <p class="mb-0">
+                    Check our other rooms and suit if the one above doesn't suit your taste. 
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-7 offset-sm-1 d-flex align-items-end p-sm-0">
+            <div class="owl-carousel">
+
+                {% for room in rooms %}
+                    <div class="room-card card border-0">
+                        <a href="{% url 'book_page' room %}?available=True&check_in_date={{ request.GET.check_in_date }}&check_out_date={{ request.GET.check_out_date }}&num={{ request.GET.num }}" class="room-card-image"><img src="{{ room.image.url }}" class="img-fluid"></a>
+                        <div class="card-body d-flex flex-column pl-0">
+                            <a href="{% url 'book_page' room.room_name %}?available=True&check_in_date={{ request.GET.check_in_date }}&check_out_date={{ request.GET.check_out_date }}&num={{ request.GET.num }}" class="card-room-name">{{ room.room_name }}</a>
+                            <span class="card-room-price">${{ room.price }} <span class="text-muted" style="font-size: 0.7rem; font-weight: 400;">/per night</span></span>
+                            <span class="card-room-mute text-muted">starting from</span>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <script>
+            $(".owl-carousel").owlCarousel({
+                center:false,
+                margin:50,
+                items:3,
+                nav:false,
+                loop: false,
+                autoWidth:true,
+                // slideTransition: 'linear',
+                autoplay: false,
+                autoplayTimeout: 4000,
+                // autoplaySpeed: 6000,
+                autoplayHoverPause: true,
+                smartSpeed: 2500,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:2
+                    },
+                    600: {
+                        items:2
+                    },
+                    1000: {
+                        items:3
+                    }
+                }
+            });
+        </script>
     </div>
 </div>
 

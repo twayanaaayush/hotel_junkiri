@@ -19,13 +19,12 @@ def index_page(request):
 
     check_in_date=''
     check_out_date=''
-
-    # user_form = UserForm()
-    # booking_form = BookForm()
+    num_guests = ''
 
     message = {
         'submitted': False,
         'available': False,
+        'disable': False,
         'title': '',
         'body': ''
     }
@@ -45,7 +44,7 @@ def index_page(request):
                 url = url_builder('index')
             else:
                 available =  check(request, check_in_date, check_out_date, num_guests)
-                url = url_builder('index', get={'available':available, 'check-in-date':check_in_date, 'check-out-date':check_out_date, 'num':num_guests})
+                url = url_builder('index', get={'available':available, 'check_in_date':check_in_date, 'check_out_date':check_out_date, 'num':num_guests})
 
             return HttpResponseRedirect(url) 
     else:
@@ -53,9 +52,9 @@ def index_page(request):
 
         if 'available' in request.GET:
             available = request.GET.get('available')
-            check_in_date = request.GET.get('check-in-date')
-            check_out_date = request.GET.get('check-out-date')
-            num_guests = request.GET.get('num')
+            check_in_date = request.GET.get('check_in_date')
+            check_out_date = request.GET.get('check_out_date')
+            # num_guests = request.GET.get('num')
 
             message['submitted'] = True
             message['available'] = available
@@ -67,6 +66,9 @@ def index_page(request):
                 message['title'] = "Room Unavailable"
                 if 'error' in request.session:
                     message['body'] = request.session['error']
+
+                    request.session.modified = True
+                    request.session.pop('error')
                 else:
                     message['body'] = f"We don't have any rooms available from <span class='text-danger'>{check_in_date}</span> to <span class='text-danger'>{check_out_date}</span>."
 
@@ -74,11 +76,9 @@ def index_page(request):
         'rooms': rooms,
         'services': services,
         'availability_form': availability_form,
-        'check_in_date': check_in_date,
-        'check_out_date': check_out_date,
-        'num_guests': num_guests,
-        # 'user_form': user_form,
-        # 'booking_form': booking_form,
+        # 'check_in_date': check_in_date,
+        # 'check_out_date': check_out_date,
+        # 'num_guests': num_guests,
         'message': message,
         'footer': 'required',
         'side_nav': 'required'

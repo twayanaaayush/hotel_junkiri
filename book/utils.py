@@ -5,6 +5,8 @@ from book.models import Book
 
 def check(request, check_in, check_out, num_guests=1):
 
+    request.session.modified = True
+
     filtered_room = list(Room.objects.filter(capacity__gte = num_guests))
     available_room = list()
 
@@ -31,5 +33,6 @@ def check(request, check_in, check_out, num_guests=1):
         request.session['error'] = f"No Rooms for {num_guests} guests.</br>Consider dividing the guests into different rooms."
     
     request.session['available_room'] = available_room  #only contains the name of the room
+    # print(request.session['available_room'])
 
     return True if len(available_room) > 0 else False

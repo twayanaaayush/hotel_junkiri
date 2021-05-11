@@ -12,12 +12,12 @@
 
             <div class="modal-body">
 
-                {% if message.available == "True" %}
+                {% if message.available and not message.disable %}
                     <p class="mb-3">{{ message.body | safe}}</p>
 
                     {% for room in request.session.available_room %}
                         <div class="alert alert-success my-2" role="alert">
-                            <a href="{% url 'book_page' room %}?available=true&check-in-date={{ check_in_date }}&check-out-date={{ check_out_date }}&num={{ num_guests }}" class="text-success" style="text-decoration:none;">{{ room }}</a>
+                            <a href="{% url 'book_page' room %}?available=True&check_in_date={{ request.GET.check_in_date }}&check_out_date={{ request.GET.check_out_date }}&num={{ request.GET.num }}" class="text-success" style="text-decoration:none;">{{ room }}</a>
                         </div>
                     {% endfor %}
 

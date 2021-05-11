@@ -12,6 +12,11 @@
                 </button>
             </div>
             <div class="modal-body">
+                {% if messages %}
+                    {% for message_built_in in messages %}
+                        <div class="alert alert-danger mb-sm-4" role="alert">{{ message_built_in }}</div>
+                    {% endfor %}
+                {% endif %}
                 <form method="POST" action="{% url 'book' %}" class="px-4">
                     <div class="alert alert-dark mb-sm-4" role="alert">User Details</div>
                     {% crispy user_form %}
